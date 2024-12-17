@@ -1,10 +1,7 @@
 import { Link } from "@remix-run/react";
-// eslint-disable-next-line import/no-duplicates
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { /* RMWC components you need for THIS component */ } from 'rmwc'; // Import only what you need
-// eslint-disable-next-line import/no-duplicates
-import React from 'react';
+
 
 export default function DataVisualization() {
     const [selectedChart, setSelectedChart] = useState('line'); // Default chart type
@@ -25,21 +22,10 @@ export default function DataVisualization() {
 
     // Placeholder for other chart types (e.g., BarChart, AreaChart)
     const renderChart = () => {
-        switch (selectedChart) {
-            case 'line':
-                return (
-                    <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                        width={500}
-                        height={300}
-                        data={sampleData}
-                        margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
-                        }}
-                    >
+        if (selectedChart === 'line') {
+            return (
+                <ResponsiveContainer width="100%" height={400}>
+                    <LineChart data={sampleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" />
                         <YAxis />
@@ -50,9 +36,9 @@ export default function DataVisualization() {
                     </LineChart>
                 </ResponsiveContainer>
                 );
-            default:
-                return <p>Chart type not yet implemented.</p>;
         }
+        return <p>Chart type not yet implemented.</p>;
+
     };
 
     return (

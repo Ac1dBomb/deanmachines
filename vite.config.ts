@@ -33,7 +33,7 @@ export default defineConfig({
     },
   },
     ssr: {
-        noExternal: ['react-router-dom', 'react-router'],
+        noExternal: ['react-router-dom', 'react-router', '@google-ai/generativelanguage', 'google-auth-library', 'composable-functions'],
         target: 'node', // Specify the Node.js environment
           resolve: {
               externalConditions: ['node'],

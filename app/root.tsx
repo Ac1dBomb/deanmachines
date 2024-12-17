@@ -9,7 +9,7 @@ import {
 } from '@remix-run/react';
 import Navbar from './routes/navbar';
 import { ErrorBoundary } from 'react-error-boundary';
-import './styles/global.css';  // Make sure to import global styles
+import './styles/tailwind.css';  // Make sure to import global styles
 
 // No longer need RMWC ThemeProvider or Typography here
 
