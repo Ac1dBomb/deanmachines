@@ -1,0 +1,260 @@
+/* app/tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Define custom CSS variables (consistent with global.css) */
+:root {
+    --primary: #64ffda;
+    --secondary: #f57c00;
+    --background: #282c34;
+    --accent: #a78bfa;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --text-color-light: #f0f0f0;
+    --text-color-dark: #333;
+    --glass-morphism: rgba(255, 255, 255, 0.15);
+    --border-radius: 8px;
+    --transition-duration: 0.3s;
+    --nav-height: 60px;
+    --mobile-nav-height: 50px;
+    --font-family: 'Roboto', sans-serif;
+    --code-font-family: 'Fira Code', monospace;
+    --animation-speed: 1.5s;
+    --gradient-start: #282c34;
+    --gradient-end: #333a43;
+    --gradient-angle: 135deg;
+}
+
+/* Base Styles */
+html, body {
+    @apply bg-[var(--background)] text-[var(--text-color-light)] font-[var(--font-family)] antialiased min-h-screen;
+    scroll-behavior: smooth;
+    transition: background var(--transition-duration) ease;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 { @apply font-bold tracking-tight text-[var(--text-color-light)] mb-3; }
+h1 { @apply text-3xl sm:text-4xl md:text-5xl; }
+h2 { @apply text-2xl sm:text-3xl md:text-4xl; }
+h3 { @apply text-xl sm:text-2xl md:text-3xl; }
+h4 { @apply text-lg sm:text-xl md:text-2xl; }
+h5 { @apply text-md sm:text-lg md:text-xl; }
+h6 { @apply text-sm sm:text-md md:text-lg; }
+p, li { @apply text-base sm:text-lg leading-relaxed; }
+
+
+/* Links */
+a {
+    @apply text-[var(--primary)] underline-offset-2 duration-300 relative;
+    text-decoration: none;
+    transition: color var(--transition-duration) ease-in-out;
+}
+a:hover, a:focus {
+    @apply text-[var(--secondary)] outline-none;
+    &::after {
+            content: '';
+            @apply absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[var(--secondary)];
+            transition: width 0.3s ease;
+            width: 100%; /* Animate width on hover */
+        }
+}
+
+/* Navigation Styles */
+nav {
+    @apply fixed w-full top-0 z-50 p-4;
+    background-color: rgba(40, 44, 52, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px var(--shadow);
+    transition: background-color var(--transition-duration) ease;
+}
+
+nav .container {
+    @apply container mx-auto flex justify-between items-center;
+    padding: 0 1rem;
+}
+
+nav h1 {
+    @apply text-[var(--text-color-light)] text-xl font-semibold transition-colors duration-300;
+}
+
+nav ul {
+    @apply flex space-x-4 list-none p-0 m-0;
+}
+
+nav li {
+    @apply m-0;
+}
+
+nav a {
+    @apply relative text-[var(--text-color-light)] font-medium transition-colors duration-300;
+        &:after {
+        content: '';
+        @apply absolute left-0 bottom-[-2px] w-0 h-[2px] bg-[var(--primary)] transition-width duration-300;
+    }
+}
+
+nav a:hover, nav a:focus {
+    @apply text-[var(--primary)] outline-none;
+        &:after {
+            width: 100%;
+    }
+}
+nav a.active {
+    @apply text-[var(--primary)]
+        &:after {
+            width: 100%;
+    }
+}
+
+
+
+/* Buttons */
+.neumorphic-button {
+    @apply relative bg-[var(--secondary)] px-5 py-3 rounded-xl mx-auto my-4 shadow-md transition-all duration-200;
+    box-shadow: 6px 6px 12px var(--shadow), -6px -6px 12px rgba(36, 36, 36, 0.8);
+    &:hover {
+        @apply shadow-lg -translate-y-1;
+        box-shadow: 4px 4px 8px var(--shadow), -4px -4px 8px rgba(36, 36, 36, 0.8);
+        &::before {
+            content: '';
+            @apply absolute inset-0 bg-[var(--accent)] opacity-20 mix-blend-multiply;
+        }
+    }
+    &:active {
+        @apply scale-95 shadow-inner;
+    }
+}
+
+.button {
+    @apply inline-block px-6 py-3 font-bold rounded-lg shadow-md transition-colors duration-300;
+    background-color: var(--primary);
+    color: var(--text-color-dark);
+    &:hover {
+        background-color: var(--secondary);
+        color: var(--text-color-light);
+        transform: translateY(-2px);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+/* Cards */
+.card {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    &:hover {
+        @apply transform -translate-y-1;
+            border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Form Elements */
+input, textarea, select {
+    @apply bg-transparent text-[var(--text-color-light)] border border-[var(--primary)] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] duration-200;
+}
+
+/* Lists */
+ul {
+    @apply list-disc list-inside;
+    margin-left: 1.2rem;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+ol { @apply list-decimal list-inside;}
+li { @apply my-2 leading-relaxed;}
+
+
+/* Gradients */
+.text-gradient {
+    background-image: linear-gradient(to-right, #bdbdbd, var(--accent), #f5f5f5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+    background-image: linear-gradient(to-r, #242424, #333, #242424);
+}
+
+/* Code Blocks */
+code { @apply bg-[var(--secondary)]/50 rounded px-2 py-1 font-[var(--code-font-family)] text-sm; }
+pre { @apply bg-[var(--secondary)]/50 rounded p-4 overflow-x-auto whitespace-pre-wrap; code { @apply block whitespace-pre-wrap; } }
+
+/* Scrollbars */
+::-webkit-scrollbar { @apply w-2; }
+::-webkit-scrollbar-track { @apply bg-[var(--secondary)]/50; }
+::-webkit-scrollbar-thumb { @apply bg-[var(--accent)] rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-[var(--primary)];}
+
+/* Animations */
+.animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn var(--animation-speed) ease-out forwards;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    nav .container {
+        @apply flex-col
+    }
+    nav ul {
+        @apply flex-col items-center mt-2 space-x-0 space-y-3;
+    }
+    main {
+        padding-top: calc(var(--mobile-nav-height) + 1rem);
+    }
+    nav h1 {
+        @apply text-xl;
+    }
+}
+
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+.mt-8 {
+    margin-top: 2rem;
+}
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+.mb-4{
+    margin-bottom: 1rem;
+}
+
+.flex-center {
+    @apply flex justify-center items-center;
+}
+
+
+/* Dynamic gradient angle */
+body:hover {
+    --gradient-angle: 225deg;
+}
