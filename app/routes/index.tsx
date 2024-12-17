@@ -4,7 +4,10 @@ import { Icon } from '@rmwc/icon';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
 
-
+//sonar.issue.ignore.multicriteria=e1
+//sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S6759
+//sonar.issue.ignore.multicriteria.e1.resourceKey=path/to/file.ts 
+//needs to be fixed
 const ResourceItem = ({ text, icon, to, href, external }: {text: string, icon: string, to?: string, href?: string, external?: boolean}) => (
     <ListItem
         tag={external ? 'a' : Link}

@@ -1,106 +1,104 @@
-// app/root.tsx
 import {
     Links,
     Meta,
     Outlet,
     Scripts,
     ScrollRestoration,
-    useMatches,
     useRouteError,
+    isRouteErrorResponse,
 } from '@remix-run/react';
-import './styles/global.css';
-import { ThemeProvider } from '@rmwc/theme';
-import { Typography } from '@rmwc/typography';
 import Navbar from './routes/navbar';
 import { ErrorBoundary } from 'react-error-boundary';
-import './styles/theme.css';
+import './styles/global.css';  // Make sure to import global styles
 
-const theme = {
-    '--mdc-theme-primary': '#4285f4',
-    '--mdc-theme-on-primary': 'white',
-};
+// No longer need RMWC ThemeProvider or Typography here
 
-function ErrorFallback({ error }: { error: Error }) {
+function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
     console.error('Error in component tree', error);
     return (
-        <Typography use="headline5" style={{ padding: '20px' }}>
-        Oops! An error occurred. Please try again later.
-        <br />
-        {error.message}
-        </Typography>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+            <h1 className="text-3xl font-bold mb-4">Oops! An error occurred.</h1>
+            <p className="text-lg">{error.message}</p>
+            <button
+                onClick={resetErrorBoundary}
+                className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+                Try again
+            </button>
+        </div>
     );
 }
 
-function CatchBoundary() {
-    const error = useRouteError();
-    const matches = useMatches();
-    let statusText: string = '';
 
-    if (error && typeof error === 'object' && 'message' in error) {
-        statusText = typeof error.message === 'string' ? error.message : 'An unexpected error occurred.';
-    }
-
-
-    const errorData = matches
-        .map((match) => match.data)
-        .filter((data): data is { error: { message: string } } =>
-        data != null && typeof data === 'object' && 'error' in data && data.error != null && typeof data.error === 'object' && 'message' in data.error && typeof data.error.message === 'string'
-    )[0]?.error.message
-
-
-    return (
-        <Typography use="headline5" style={{ padding: '20px' }}>
-        Oops! {statusText || errorData || 'An unexpected error occurred.'}
-        <br />
-        </Typography>
-    );
-}
-
-function ErrorComponent() {
-    const error = useRouteError();
-    console.error('Error in route:', error);
-    let errorMessage: string = "";
-    if (error && typeof error === 'object' && 'message' in error) {
-        errorMessage = typeof error.message === 'string' ? error.message : "An error occurred within a route";
-    }
-    return (
-        <Typography use="headline5" style={{ padding: '20px' }}>
-        Oops! {errorMessage || "An error occurred within a route"}
-        </Typography>
-    );
-}
 
 export default function App() {
     return (
         <html lang="en">
-        <head>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="width=device-width,initial-scale=1" />
-            <Meta />
-            <Links />
-            <link rel="icon" href="/favicon.ico" />
-            <title>Dean Machines</title>
-            <meta name="description" content="FPV Prototype Web App" />
-        </head>
-        <body>
-            <ThemeProvider options={theme}>
-            <Navbar />
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-                <Outlet />
-            </ErrorBoundary>
-            </ThemeProvider>
-            <ScrollRestoration />
-            <Scripts />
-        </body>
+            <head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="width=device-width,initial-scale=1" />
+                <Meta />
+                <Links />
+                <title>Dean Machines</title>
+                <meta name="description" content="FPV Prototype Web App" />
+            </head>
+            <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200"> {/* Apply Tailwind classes to body */}
+                <Navbar />
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <Outlet /> {/* Main content outlet */}
+                </ErrorBoundary>
+                <ScrollRestoration />
+                <Scripts />
+            </body>
         </html>
     );
 }
-export function ErrorBoundaryComponent({ error }: { error: Error }) {
-    return <ErrorFallback error={error} />;
+
+export function CatchBoundary() {
+    const caught = useRouteError();
+    if (isRouteErrorResponse(caught)) {
+        // This is an error from a route or the server.  Handle it here.
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
+                {caught.status === 500 ? (
+                    <p className="text-lg">Internal Server Error</p>
+                ) : caught.status === 404 ? (
+                    <p className="text-lg">Page Not Found</p>
+                ) : caught.status === 401 ? (
+                    <p className="text-lg">Unauthorized</p>
+                ) : (
+                    <p className="text-lg">
+                        {caught.status} {caught.statusText} {caught.data?.message}
+                    </p>
+                )}
+
+            </div>
+        )
+    } else if (caught instanceof Error) {
+        // This is an error from a component or some other part of the app.
+        // Handle it here.  If you don't have a way to handle it here
+        // you can re-throw it to show the default error boundary.
+        console.error("Client-side error", caught);
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
+                <p className="text-lg">A client-side error occurred.</p>
+                <p className="text-lg">Error Message: {caught.message}</p>
+            </div>
+        )
+    } else {
+        // This is some other unexpected error.
+        console.error("Unexpected error", caught);
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
+                <p className="text-lg">An unexpected error occurred.</p>
+            </div>
+        )
+    }
+
+
 }
-export function CatchBoundaryComponent() {
-    return <CatchBoundary />;
-}
-export function ErrorComponentBoundary() {
-    return <ErrorComponent />;
-}
+
+
