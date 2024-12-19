@@ -37,6 +37,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     * Important security updates.
         - Information on any vulnerabilities or issues addressed
 
+## [12-19-2024]
+### Added
+
+* Implemented dark mode functionality throughout the application.  The dark mode is activated automatically based on the user's system preferences.  Users can also manually toggle between light and dark mode.
+* Added a loading indicator to improve user experience during data fetching.  The loading indicator is displayed while data is being fetched and disappears once the data has been loaded.
+* Improved the overall styling and layout of the application, making it more visually appealing and user-friendly.
+* Added more detailed descriptions to the updates section, making it easier for users to understand the progress of the project.
+* Improved the accessibility of the application for users with disabilities.
+* Improved performance by optimizing data fetching and rendering processes.
+
+### Changed
+
+* Updated the navigation bar to improve its usability and appearance.  The navigation bar is now easier to use on smaller screens.
+* Updated the color scheme to match the overall branding of the project.
+* Updated the font to improve readability.
+
+### Fixed
+
+* Fixed a bug that caused the application to crash on certain devices.
+* Fixed a bug that prevented users from accessing certain pages.
+* Fixed several minor bugs and improved the overall stability of the application.
+
+
 ## [Unreleased] - 2024-12-15
 
 ### Added
@@ -60,6 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Resolved issues with navigation bar rendering.
 * Addressed potential routing issues by carefully reviewing the `routes` directory and ensuring that all page components are correctly linked to the navigation bar and the routes are correctly configured.
 * Corrected CSS import issues to ensure proper Tailwind CSS application.
+
+
 
 ## [1.1.0] - 2024-12-14
 

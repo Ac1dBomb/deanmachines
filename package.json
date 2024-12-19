@@ -2,7 +2,6 @@
   "name": "deanmachines",
   "private": true,
   "sideEffects": false,
-  "type": "module",
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
@@ -15,6 +14,7 @@
     "@conform-to/zod": "^1.2.2",
     "@eslint/config-array": "^0.19.1",
     "@eslint/object-schema": "^2.1.5",
+    "@google-cloud/container": "^5.19.0",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^3.9.1",
@@ -41,6 +41,7 @@
     "recharts": "^2.15.0",
     "remix-forms": "^2.3.0",
     "remix-utils": "^7.7.0",
+    "ts-node": "^10.9.2",
     "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },
@@ -72,7 +73,7 @@
   },
   "version": "1.0.0",
   "description": "FPV Prototype Web App",
-  "main": "postcss.config.js",
+  "main": "postcss.config.ts",
   "repository": {
     "type": "git",
     "url": "based"
