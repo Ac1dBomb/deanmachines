@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'; // Correct import
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import '../styles/tailwind.css';
 
 export default function Requirements() {
 

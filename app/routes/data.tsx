@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import '../styles/tailwind.css';
 
 
 export default function DataVisualization() {

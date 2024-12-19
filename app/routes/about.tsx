@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-
+import '../styles/tailwind.css';
 export default function AboutUs() {
     return (
         <div className="container mx-auto p-4 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">

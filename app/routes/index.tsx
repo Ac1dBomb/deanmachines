@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
+import '../styles/tailwind.css';
 
 // No need for RMWC List or Icon components anymore
 
