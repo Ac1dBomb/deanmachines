@@ -1,12 +1,7 @@
-import { LinksFunction } from '@remix-run/node';
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
+import '../styles/tailwind.css';
+import { Outlet, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
+import Navbar from './Navbar';
 import { ErrorBoundary } from 'react-error-boundary';
-import tailwindStyles from './styles/tailwind.css';
-import Layout from './routes/layout';
-
-export const links: LinksFunction = () => {
-    return [{ rel: 'stylesheet', href: tailwindStyles }];
-};
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
     console.error('Error in component tree', error);
@@ -24,24 +19,20 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetError
     );
 }
 
-export default function App() {
+export default function Root() {
     return (
         <html lang="en">
             <head>
-                <Meta />
-                <Links />
                 <title>Dean Machines</title>
                 <meta name="description" content="FPV Prototype Web App" />
+                <link rel="stylesheet" href="/styles/tailwind.css" /> {/* Ensure correct path */}
             </head>
             <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+                <Navbar />
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Layout>
-                        <Outlet />
-                    </Layout>
+                    <Outlet />
                 </ErrorBoundary>
                 <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
             </body>
         </html>
     );
@@ -85,4 +76,3 @@ export function CatchBoundary() {
         );
     }
 }
-

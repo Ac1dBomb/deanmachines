@@ -2,7 +2,6 @@ import { Link } from "@remix-run/react";
 import { useState } from 'react';
 import '../styles/tailwind.css';
 
-// Sample update data (replace with your actual data)
 interface Update {
     title: string;
     date: string;
@@ -20,9 +19,7 @@ const updates: Update[] = [
         date: "2024-08-15",
         description: "Significant improvements to data processing speed and efficiency. Added support for larger datasets."
     },
-    // Add more updates here...
 ];
-
 
 export default function Updates() {
     const [expanded, setExpanded] = useState<Record<number, boolean>>({});
@@ -34,8 +31,7 @@ export default function Updates() {
     return (
         <div className="container mx-auto p-4 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">
             <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Project Updates</h1>
-
-            <div className="w-full md:w-2/3 lg:w-1/2 space-y-6"> {/* Added spacing between updates */}
+            <div className="w-full md:w-2/3 lg:w-1/2 space-y-6">
                 {updates.map((update, index) => (
                     <div
                         key={index}
