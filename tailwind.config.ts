@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./app/routes/**/*.{ts,tsx}"], // Include all .ts and .tsx files under app/routes
-
+  content: ["./app/routes/**/*.{ts,tsx}"], 
   theme: {
     extend: {
       fontFamily: {
@@ -22,4 +21,5 @@ export default {
     },
   },
   plugins: [],
+  prefix: 'tw-', // Add this line
 };

@@ -1,13 +1,8 @@
 {
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-  
-    "**/.server/**/*.ts",
-    "**/.server/**/*.tsx",
-    "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
-, "app/routes/GeminiApigeeComponent.js"  ],
+    "**/*.tsx"
+  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": ["@remix-run/node", "vite/client"],
@@ -22,12 +17,6 @@
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./app/*"]
-    },
-
-    // Vite takes care of building everything, not tsc.
     "noEmit": true
   }
 }
