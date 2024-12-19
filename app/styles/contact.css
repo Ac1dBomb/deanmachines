@@ -1,0 +1,49 @@
+@import '../tailwind.css';
+
+.contact-container {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    @apply space-y-4;
+}
+
+.contact-input {
+    @apply w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)];
+}
+
+.contact-textarea {
+    @apply w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)] resize-y;
+    min-height: 150px;
+}
+
+.contact-button {
+    @apply bg-[var(--primary)] hover:bg-[var(--secondary)] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline;
+}
+.contact-message {
+    @apply text-center mt-4;
+}
+.contact-message-success {
+    @apply text-green-500;
+}
+
+.contact-message-error {
+    @apply text-red-500;
+}
+.contact-group {
+    @apply mb-4;
+}
+
+.contact-label {
+    @apply block text-gray-700 font-bold mb-2;
+}
+.contact-success {
+    @apply text-green-500 text-center mt-4;
+}
+
+.contact-error {
+    @apply text-red-500 text-center mt-4;
+}

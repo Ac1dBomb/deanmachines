@@ -1,23 +1,50 @@
 import { Link } from "@remix-run/react";
 import { useState } from 'react';
-import '../styles/tailwind.css';
+import '../styles/updates.css'; // Ensure correct path
 
 interface Update {
     title: string;
     date: string;
     description: string;
+    details: string;
 }
 
 const updates: Update[] = [
     {
         title: "Initial Release",
         date: "2024-07-26",
-        description: "First version of the FPV data analysis prototype released. Includes basic data import and visualization capabilities."
+        description: "First version of the FPV data analysis prototype released.",
+        details: "Includes basic data import and visualization capabilities. Users can upload their flight data and visualize it using various charts and graphs."
     },
     {
         title: "Improved Data Processing",
         date: "2024-08-15",
-        description: "Significant improvements to data processing speed and efficiency. Added support for larger datasets."
+        description: "Significant improvements to data processing speed and efficiency.",
+        details: "Added support for larger datasets and optimized the data processing algorithms to handle more complex data structures."
+    },
+    {
+        title: "New Visualization Tools",
+        date: "2024-09-10",
+        description: "Introduced new data visualization tools.",
+        details: "Added support for 3D visualizations and interactive charts. Users can now explore their data in more detail and gain deeper insights."
+    },
+    {
+        title: "Integration with NVIDIA Orin Nano",
+        date: "2024-10-05",
+        description: "Integrated the NVIDIA Orin Nano for enhanced AI capabilities.",
+        details: "Leveraged the power of the NVIDIA Orin Nano to run complex AI models for autonomous drone navigation and obstacle avoidance."
+    },
+    {
+        title: "Sensor Integration",
+        date: "2024-11-20",
+        description: "Integrated various sensors for enhanced data collection.",
+        details: "Added support for TFmini-S, optical flow sensor, IR beacon, IR obstacle avoidance, ultrasonic sensors, and AI camera to collect comprehensive flight data."
+    },
+    {
+        title: "Open Source Dataset",
+        date: "2025-01-15",
+        description: "Released an open source dataset for training AI models.",
+        details: "Created a dataset from collected flight data and made it available for the community to use in training their own AI models."
     },
 ];
 
@@ -29,32 +56,35 @@ export default function Updates() {
     };
 
     return (
-        <div className="container mx-auto p-4 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">
-            <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Project Updates</h1>
-            <div className="w-full md:w-2/3 lg:w-1/2 space-y-6">
+        <div className="updates-container">
+            <h1 className="updates-title">Project Updates</h1>
+            <div className="updates-list">
                 {updates.map((update, index) => (
                     <div
                         key={index}
-                        className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+                        className="update-card"
                     >
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
+                        <div className="update-header">
+                            <h2 className="update-title">
                                 {update.title}
                             </h2>
-                            <span className="text-gray-500 dark:text-gray-400 text-sm">
+                            <span className="update-date">
                                 {update.date}
                             </span>
                         </div>
                         <button
                             onClick={() => toggleExpansion(index)}
-                            className="w-full text-left text-blue-500 hover:underline focus:outline-none"
+                            className="update-toggle"
                         >
                             {expanded[index] ? "Hide Details" : "Show Details"}
                         </button>
                         {expanded[index] && (
-                            <div className="mt-4">
-                                <p className="text-gray-600 dark:text-gray-300">
+                            <div className="update-details">
+                                <p className="update-description">
                                     {update.description}
+                                </p>
+                                <p className="update-details-text">
+                                    {update.details}
                                 </p>
                             </div>
                         )}
@@ -63,7 +93,7 @@ export default function Updates() {
             </div>
             <Link
                 to="/"
-                className="mt-8 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="button"
             >
                 Go Back Home
             </Link>

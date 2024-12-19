@@ -1,6 +1,5 @@
-import '../styles/tailwind.css';
+import '../styles/tailwind.css'; // Ensure correct path
 import { Outlet, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
-import Navbar from './Navbar';
 import { ErrorBoundary } from 'react-error-boundary';
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
@@ -25,10 +24,10 @@ export default function Root() {
             <head>
                 <title>Dean Machines</title>
                 <meta name="description" content="FPV Prototype Web App" />
-                <link rel="stylesheet" href="/styles/tailwind.css" /> {/* Ensure correct path */}
+                <link rel="stylesheet" href="/styles/tailwind.css" /> {/* Ensure correct path */} 
             </head>
             <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-                <Navbar />
+                {/* Remove Navbar component */}
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                     <Outlet />
                 </ErrorBoundary>

@@ -1,15 +1,18 @@
 import { Outlet } from '@remix-run/react';
 import Navbar from '../components/Navbar';
-import '../styles/tailwind.css';
+import '../styles/layout.css'; // Ensure correct path
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <div>
+        <div className="layout-container">
             <Navbar />
-            <main className="container mx-auto p-4">
+            <main className="layout-main">
                 {children}
                 <Outlet />
             </main>
+            <footer className="layout-footer">
+                <p>© 2023 Dean Machines. All rights reserved.</p>
+            </footer>
         </div>
     );
 }

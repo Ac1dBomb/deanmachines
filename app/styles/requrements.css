@@ -1,0 +1,116 @@
+@import '../tailwind.css';
+
+.requirements-container {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.requirement-item {
+    @apply mb-4;
+}
+
+.requirement-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.requirement-description {
+    @apply text-gray-300;
+}
+.requirement-image {
+    @apply w-full h-auto rounded-md mb-2;
+}
+.requirements-section {
+    @apply mb-8;
+}
+.requirement-link {
+    @apply text-blue-500 hover:underline;
+}
+.requirements-list {
+    @apply list-disc list-inside;
+}
+
+.requirements-list-item {
+    @apply my-2;
+}
+.requirements-list-container {
+    @apply mb-4;
+}
+.requirements-table {
+    @apply w-full border-collapse;
+}
+
+.requirements-table th, .requirements-table td {
+    @apply border border-gray-400 px-4 py-2;
+}
+
+.requirements-table th {
+    @apply bg-gray-800 text-white font-bold;
+}
+
+.requirements-table tr:nth-child(even) {
+    @apply bg-gray-900;
+}
+.requirements-table-responsive {
+    @apply overflow-x-auto;
+}
+
+.requirements-table-responsive table {
+    @apply w-full;
+}
+.requirements-table-responsive th, .requirements-table-responsive td {
+    @apply border border-gray-400 px-4 py-2;
+}
+
+.requirements-table-responsive th {
+    @apply bg-gray-800 text-white font-bold;
+}
+
+.requirements-table-responsive tr:nth-child(even) {
+    @apply bg-gray-900;
+}
+.requirements-table-responsive {
+    overflow-x: auto;
+}
+.requirements-item-container {
+    @apply mb-4;
+}
+.requirements-item-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.requirements-item-description {
+    @apply text-gray-300;
+}
+.requirements-item-image {
+    @apply w-full h-auto rounded-md mb-2;
+}.requirements-item-link {
+    @apply text-blue-500 hover:underline;
+}
+
+.requirements-section-title {
+    @apply font-bold text-xl mb-2;
+}
+
+.requirements-section-content {
+    @apply text-gray-300;
+}
+.requirements-section-container {
+    @apply mb-8;
+}
+.requirements-container-inner {
+    @apply p-6;
+}
+.requirements-item-container-inner {
+    @apply mb-4;
+}.requirements-item-list {
+    @apply list-disc list-inside;
+}
+
+.requirements-item-list-item {
+    @apply my-2;
+}
+.requirements-item-list-container {
+    @apply mb-4;
+}

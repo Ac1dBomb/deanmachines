@@ -1,0 +1,115 @@
+@import '../tailwind.css';
+
+.about-container {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-section {
+    @apply mb-4;
+}
+
+.about-title {
+    @apply font-bold text-2xl mb-2;
+}
+
+.about-content {
+    @apply text-gray-300;
+}
+.about-image {
+    @apply w-full h-auto rounded-md mb-2;
+}
+.about-list {
+    @apply list-disc list-inside;
+}
+.about-list-item {
+    @apply my-2;
+}
+.about-link {
+    @apply text-blue-500 hover:underline;
+}
+.about-section-title {
+    @apply font-bold text-xl mb-2;
+}
+.about-section-content {
+    @apply text-gray-300;
+}.about-skills {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.skill-item {
+    @apply bg-gray-800 p-4 rounded-md;
+}
+
+.skill-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.skill-description {
+    @apply text-gray-300;
+}
+.about-timeline {
+    @apply timeline;
+}
+
+.timeline {
+    @apply relative;
+}
+
+.timeline::before {
+    content: '';
+    @apply absolute top-0 left-1/2 -translate-x-1/2 h-full w-1 bg-gray-400;
+}
+
+.timeline-item {
+    @apply relative p-4;
+}
+
+.timeline-item::before {
+    content: '';
+    @apply absolute top-1/2 -translate-y-1/2 left-[-10px] w-6 h-6 bg-gray-400 rounded-full;
+}
+
+.timeline-item-content {
+    @apply bg-gray-800 p-4 rounded-md;
+}
+
+.timeline-item-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.timeline-item-description {
+    @apply text-gray-300;
+}
+.about-experience {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.experience-item {
+    @apply bg-gray-800 p-4 rounded-md;
+}
+
+.experience-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.experience-description {
+    @apply text-gray-300;
+}
+.about-education {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.education-item {
+    @apply bg-gray-800 p-4 rounded-md;
+}
+
+.education-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.education-description {
+    @apply text-gray-300;
+}

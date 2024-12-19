@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@remix-run/react";
 import { useState, useCallback } from 'react';
-import '../styles/tailwind.css';
+import '../styles/tailwind.css'; // Ensure correct path
 
 function MobileNavIcon({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
     return (

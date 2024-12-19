@@ -1,0 +1,33 @@
+@import '../tailwind.css';
+
+.updates-container {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.update-item {
+    @apply mb-4;
+}
+
+.update-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.update-date {
+    @apply text-gray-500 text-sm mb-2;
+}
+
+.update-content {
+    @apply text-gray-300;
+}
+.update-image {
+    @apply w-full h-auto rounded-md mb-2;
+}
+.updates-section {
+    @apply mb-8;
+}
+.update-link {
+    @apply text-blue-500 hover:underline;
+}

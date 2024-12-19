@@ -1,12 +1,11 @@
 import { Link } from "@remix-run/react";
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import '../styles/tailwind.css';
-
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, AreaChart, Area } from 'recharts';
+import '../styles/data.css'; // Ensure correct path
 
 export default function DataVisualization() {
     const [selectedChart, setSelectedChart] = useState('line'); // Default chart type
-    const [sampleData] = useState([
+    const [sampleData, setSampleData] = useState([
         { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
         { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
         { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
@@ -16,56 +15,105 @@ export default function DataVisualization() {
         { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
     ]);
 
-
     const handleChartChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedChart(event.target.value);
     };
 
-    // Placeholder for other chart types (e.g., BarChart, AreaChart)
-    const renderChart = () => {
-        if (selectedChart === 'line') {
-            return (
-                <ResponsiveContainer width="100%" height={400}>
-                    <LineChart data={sampleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
-                </ResponsiveContainer>
-                );
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target?.result as string;
+                const data = JSON.parse(text);
+                setSampleData(data);
+            };
+            reader.readAsText(file);
         }
-        return <p>Chart type not yet implemented.</p>;
+    };
 
+    const renderChart = () => {
+        switch (selectedChart) {
+            case 'line':
+                return (
+                    <ResponsiveContainer width="100%" height={400}>
+                        <LineChart data={sampleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                );
+            case 'bar':
+                return (
+                    <ResponsiveContainer width="100%" height={400}>
+                        <BarChart data={sampleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="pv" fill="#8884d8" />
+                            <Bar dataKey="uv" fill="#82ca9d" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                );
+            case 'area':
+                return (
+                    <ResponsiveContainer width="100%" height={400}>
+                        <AreaChart data={sampleData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Area type="monotone" dataKey="pv" stroke="#8884d8" fill="#8884d8" />
+                            <Area type="monotone" dataKey="uv" stroke="#82ca9d" fill="#82ca9d" />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                );
+            default:
+                return <p>Chart type not yet implemented.</p>;
+        }
     };
 
     return (
-        <div className="container mx-auto p-4 min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-            <h1 className="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center">Data Visualization</h1>
+        <div className="data-container">
+            <h1 className="data-title">Data Visualization</h1>
             {/* Chart Type Selection */}
-            <div className="mb-4 flex justify-center">  {/* Center the controls */}
+            <div className="data-controls">
                 <label htmlFor="chartType" className="mr-2 text-gray-700 dark:text-gray-200">Chart Type:</label>
                 <select
                     id="chartType"
                     value={selectedChart}
                     onChange={handleChartChange}
-                    className="border border-gray-300 dark:border-gray-700 rounded-md px-2 py-1"
+                    className="data-select"
                 >
                     <option value="line">Line Chart</option>
-                    {/* Add more chart type options here */}
+                    <option value="bar">Bar Chart</option>
+                    <option value="area">Area Chart</option>
                 </select>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 h-[500px]">
+            <div className="data-controls">
+                <input
+                    type="file"
+                    accept=".json"
+                    onChange={handleFileUpload}
+                    className="data-upload"
+                />
+            </div>
+            <div className="data-chart">
                 {renderChart()}
             </div>
             {/* Go Back Home */}
-            <div className="mt-8 flex justify-center"> {/* Center the Home link */}
+            <div className="data-link">
                 <Link
                     to="/"
-                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className="button"
                 >
                     Go Back Home
                 </Link>

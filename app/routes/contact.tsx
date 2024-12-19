@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Link } from '@remix-run/react';
-import '../styles/tailwind.css';
+import '../styles/tailwind.css'; // Ensure correct path
 
 export default function Contact() {
     const [name, setName] = useState('');
@@ -18,9 +18,9 @@ export default function Contact() {
         setErrorMessage('');
 
         try {
-            // Basic validation.  Enhance as needed
+            // Basic validation. Enhance as needed
             if (!name || !email || !message) {
-                    setStatus('error');
+                setStatus('error');
                 setErrorMessage('All fields are required.');
 
                 if (!name && nameInputRef.current) {
@@ -40,8 +40,6 @@ export default function Contact() {
                 body: JSON.stringify({ name, email, message }),
             });
 
-
-
             if (response.ok) {
                 setStatus('success');
                 setName('');
@@ -50,7 +48,7 @@ export default function Contact() {
             } else {
                 setStatus('error');
 
-                 // Attempt to parse error message from the response
+                // Attempt to parse error message from the response
                 try {
                     const errorData = await response.json();
                     setErrorMessage(errorData.message || 'Failed to send message. Please try again later.');
@@ -58,10 +56,9 @@ export default function Contact() {
                     // Fallback if JSON parsing fails
                     setErrorMessage('Failed to send message. Please try again later.');
                 }
-
             }
         } catch (error: unknown) {
-                setStatus('error');
+            setStatus('error');
             setErrorMessage('Failed to send message. Please try again later.'); // Generic error message; refine as needed
             console.error('Error submitting form:', error); // Log for debugging
         }
@@ -75,7 +72,7 @@ export default function Contact() {
                 {status === 'success' ? (
                     <div className="text-green-600 mb-4" role="alert">Your message has been sent successfully!</div>
                 ) : (
-                        <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label>
                             <input
@@ -87,7 +84,7 @@ export default function Contact() {
                                 required
                                 aria-invalid={status === 'error' && !name ? 'true' : 'false'}
                             />
-                                {status === 'error' && !name && <p className="text-red-500 text-sm mt-1">Name is required.</p>}
+                            {status === 'error' && !name && <p className="text-red-500 text-sm mt-1">Name is required.</p>}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
@@ -99,7 +96,7 @@ export default function Contact() {
                                 required
                                 aria-invalid={status === 'error' && !email ? 'true' : 'false'}
                             />
-                                {status === 'error' && !email && <p className="text-red-500 text-sm mt-1">Email is required.</p>}
+                            {status === 'error' && !email && <p className="text-red-500 text-sm mt-1">Email is required.</p>}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label>
@@ -112,7 +109,7 @@ export default function Contact() {
                                 required
                                 aria-invalid={status === 'error' && !message ? 'true' : 'false'}
                             />
-                                {status === 'error' && !message && <p className="text-red-500 text-sm mt-1">Message is required.</p>}
+                            {status === 'error' && !message && <p className="text-red-500 text-sm mt-1">Message is required.</p>}
                         </div>
                         {status === 'error' && errorMessage && (
                             <div className="text-red-500 mb-4" role="alert">
@@ -130,8 +127,6 @@ export default function Contact() {
                         </div>
                     </form>
                 )}
-
-
 
                 <Link to="/" className="mt-8 block text-center px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300">
                     Go Back Home

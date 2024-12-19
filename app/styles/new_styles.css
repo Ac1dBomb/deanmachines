@@ -1,0 +1,121 @@
+@import '../tailwind.css';
+
+.new-container {
+    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.new-item {
+    @apply mb-4;
+}
+
+.new-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.new-content {
+    @apply text-gray-300;
+}
+.new-image {
+    @apply w-full h-auto rounded-md mb-2;
+}
+.new-section {
+    @apply mb-8;
+}
+.new-link {
+    @apply text-blue-500 hover:underline;
+}
+.new-list {
+    @apply list-disc list-inside;
+}
+
+.new-list-item {
+    @apply my-2;
+}
+.new-list-container {
+    @apply mb-4;
+}
+.new-table {
+    @apply w-full border-collapse;
+}
+
+.new-table th, .new-table td {
+    @apply border border-gray-400 px-4 py-2;
+}
+
+.new-table th {
+    @apply bg-gray-800 text-white font-bold;
+}
+
+.new-table tr:nth-child(even) {
+    @apply bg-gray-900;
+}
+.new-table-responsive {
+    @apply overflow-x-auto;
+}
+
+.new-table-responsive table {
+    @apply w-full;
+}
+.new-table-responsive th, .new-table-responsive td {
+    @apply border border-gray-400 px-4 py-2;
+}
+
+.new-table-responsive th {
+    @apply bg-gray-800 text-white font-bold;
+}
+
+.new-table-responsive tr:nth-child(even) {
+    @apply bg-gray-900;
+}
+.new-table-responsive {
+    overflow-x: auto;
+}
+.new-section-title {
+    @apply font-bold text-xl mb-2;
+}
+
+.new-section-content {
+    @apply text-gray-300;
+}
+.new-section-container {
+    @apply mb-8;
+}
+.new-container-inner {
+    @apply p-6;
+}
+.new-item-container {
+    @apply mb-4;
+}
+.new-item-title {
+    @apply font-bold text-lg mb-2;
+}
+
+.new-item-description {
+    @apply text-gray-300;
+}
+.new-item-image {
+    @apply w-full h-auto rounded-md mb-2;
+}
+.new-item-link {
+    @apply text-blue-500 hover:underline;
+}
+
+.new-item-list {
+    @apply list-disc list-inside;
+}
+
+.new-item-list-item {
+    @apply my-2;
+}
+.new-item-list-container {
+    @apply mb-4;
+}
+.new-container-responsive {
+    overflow-x: auto;
+}
+.new-item-container-responsive {
+    overflow-x: auto;
+}
