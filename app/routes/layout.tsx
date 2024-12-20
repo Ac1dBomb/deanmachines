@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 import { useState } from 'react';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLogin = () => {

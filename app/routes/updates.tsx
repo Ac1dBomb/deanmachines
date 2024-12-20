@@ -61,7 +61,7 @@ export default function Updates() {
             <div className="updates-list">
                 {updates.map((update, index) => (
                     <div
-                        key={index}
+                        key={update.date}
                         className="update-card"
                     >
                         <div className="update-header">

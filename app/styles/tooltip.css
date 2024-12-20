@@ -53,10 +53,11 @@
     transform: rotate(180deg);
 }
 .tooltip.is-top .tooltiptext {
-    top: auto;
-    bottom: 125%;
-    margin-top: 0;
-    margin-bottom: -60px;
+    left: 50%;
+    top: -125%;
+    bottom: auto;
+    margin-left: -60px;
+    margin-top: -5px;
 }
 
 .tooltip.is-top .tooltiptext::before {

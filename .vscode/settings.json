@@ -13,7 +13,8 @@
         "remixjs",
         "Scrollbars",
         "Segoe",
-        "timeframe"
+        "timeframe",
+        "tooltiptext"
     ],
     "DockerRun.DisableDockerrc": true
 }
