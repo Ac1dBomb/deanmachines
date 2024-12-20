@@ -1,4 +1,7 @@
-@import './tailwind.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import "./custom.css";
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -54,6 +57,7 @@ a:hover {
 .section-content {
     font-size: 1.2em;
 }
+
 .glassmorphism {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
@@ -62,16 +66,25 @@ a:hover {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 .card {
-    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    background: var(--glass-morphism);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur-md: blur(10px);
+    transition: all 0.3s;
+    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .section-image {
     max-width: 100%;
     height: auto;
     margin: 20px auto;
     display: block;
 }
+
 .image-container {
     display: flex;
     justify-content: center;
@@ -86,26 +99,33 @@ a:hover {
 .text-center {
     text-align: center;
 }
+
 .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .mt-2 {
     margin-top: 0.5rem;
 }
+
 .mt-4 {
     margin-top: 1rem;
 }
+
 .mt-8 {
     margin-top: 2rem;
 }
+
 .mb-2 {
     margin-bottom: 0.5rem;
 }
+
 .mb-4 {
     margin-bottom: 1rem;
 }
+
 .mb-8 {
     margin-bottom: 2rem;
 }
@@ -182,30 +202,30 @@ a:hover {
     transition: transform 0.3s ease;
 }
 
-.hover\:bg-gray-700 {
-    @apply hover:bg-gray-700;
+.hover\:bg-gray-700:hover {
+    background-color: rgb(55, 65, 81); /* This is the gray-700 color value */
 }
 
-.hover\:text-white {
-    @apply hover:text-white;
+.hover\:text-white:hover {
+    color: white;
 }
 
-.focus\:outline-none {
-    @apply focus:outline-none;
+.focus\:outline-none:focus {
+    outline: none;
 }
 
-.focus\:ring-2 {
-    @apply focus:ring-2;
+.focus\:ring-2:focus {
+    box-shadow: 0 0 0 2px var(--accent);
 }
 
-.focus\:ring-accent {
-    @apply focus:ring-[var(--accent)];
+.focus\:ring-accent:focus {
+    box-shadow: 0 0 0 2px var(--accent);
 }
 
-.dark:bg-gray-800 {
-    @apply dark:bg-gray-800;
+.dark\:bg-gray-800 {
+    background-color: rgb(31 41 55);
 }
 
 .dark\:text-white {
-    @apply dark:text-white;
+    color: white;
 }

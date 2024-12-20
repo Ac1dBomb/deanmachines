@@ -1,116 +1,291 @@
-@import '../tailwind.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .requirements-container {
-    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    background: var(--glass-morphism);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur-md: blur(10px);
+    transition: all 0.3s;
+    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 800px;
     margin: 0 auto;
 }
 
 .requirement-item {
-    @apply mb-4;
+    margin-bottom: 1rem;
 }
 
 .requirement-title {
-    @apply font-bold text-lg mb-2;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
 }
 
 .requirement-description {
-    @apply text-gray-300;
+    color: rgb(209 213 219);
 }
+
 .requirement-image {
-    @apply w-full h-auto rounded-md mb-2;
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
 }
+
 .requirements-section {
-    @apply mb-8;
+    margin-bottom: 2rem;
 }
+
 .requirement-link {
-    @apply text-blue-500 hover:underline;
+    color: rgb(59 130 246);
+    text-decoration: underline;
 }
+
 .requirements-list {
-    @apply list-disc list-inside;
+    list-style-type: disc;
+    padding-left: 1rem;
 }
 
 .requirements-list-item {
-    @apply my-2;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
+
 .requirements-list-container {
-    @apply mb-4;
+    margin-bottom: 1rem;
 }
+
 .requirements-table {
-    @apply w-full border-collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .requirements-table th, .requirements-table td {
-    @apply border border-gray-400 px-4 py-2;
+    border: 1px solid rgb(156 163 175);
+    padding: 1rem;
 }
 
 .requirements-table th {
-    @apply bg-gray-800 text-white font-bold;
+    background-color: rgb(31 41 55);
+    color: white;
+    font-weight: 700;
 }
 
 .requirements-table tr:nth-child(even) {
-    @apply bg-gray-900;
-}
-.requirements-table-responsive {
-    @apply overflow-x-auto;
+    background-color: rgb(17 24 39);
 }
 
-.requirements-table-responsive table {
-    @apply w-full;
-}
-.requirements-table-responsive th, .requirements-table-responsive td {
-    @apply border border-gray-400 px-4 py-2;
-}
-
-.requirements-table-responsive th {
-    @apply bg-gray-800 text-white font-bold;
-}
-
-.requirements-table-responsive tr:nth-child(even) {
-    @apply bg-gray-900;
-}
 .requirements-table-responsive {
     overflow-x: auto;
 }
-.requirements-item-container {
-    @apply mb-4;
+
+.requirements-table-responsive table {
+    width: 100%;
 }
+
+.requirements-table-responsive th, .requirements-table-responsive td {
+    border: 1px solid rgb(156 163 175);
+    padding: 1rem;
+}
+
+.requirements-table-responsive th {
+    background-color: rgb(31 41 55);
+    color: white;
+    font-weight: 700;
+}
+
+.requirements-table-responsive tr:nth-child(even) {
+    background-color: rgb(17 24 39);
+}
+
+.requirements-item-container {
+    margin-bottom: 1rem;
+}
+
 .requirements-item-title {
-    @apply font-bold text-lg mb-2;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
 }
 
 .requirements-item-description {
-    @apply text-gray-300;
+    color: rgb(209 213 219);
 }
+
 .requirements-item-image {
-    @apply w-full h-auto rounded-md mb-2;
-}.requirements-item-link {
-    @apply text-blue-500 hover:underline;
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.requirements-item-link {
+    color: rgb(59 130 246);
+    text-decoration: underline;
 }
 
 .requirements-section-title {
-    @apply font-bold text-xl mb-2;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .requirements-section-content {
-    @apply text-gray-300;
+    color: rgb(209 213 219);
 }
+
 .requirements-section-container {
-    @apply mb-8;
+    margin-bottom: 2rem;
 }
+
 .requirements-container-inner {
-    @apply p-6;
+    padding: 1.5rem;
 }
+
 .requirements-item-container-inner {
-    @apply mb-4;
-}.requirements-item-list {
-    @apply list-disc list-inside;
+    margin-bottom: 1rem;
+}
+
+.requirements-item-list {
+    list-style-type: disc;
+    padding-left: 1rem;
 }
 
 .requirements-item-list-item {
-    @apply my-2;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
+
 .requirements-item-list-container {
-    @apply mb-4;
+    margin-bottom: 1rem;
+}
+
+/* Add dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1a1a1a;
+        --text-color-light: #e0e0e0;
+        --text-color-dark: #f0f0f0;
+    }
+    body {
+        background-color: var(--background);
+        color: var(--text-color-light);
+    }
+}
+
+/* Add animation utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Add new advanced utilities */
+.requirements-gradient-bg {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-color-light);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.requirements-gradient-bg:hover {
+    transform: scale(1.05);
+}
+
+.requirements-animated-button {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.375rem;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.requirements-animated-button:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.requirements-card {
+    background: var(--glass-morphism);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur-md: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.requirements-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.requirements-card-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.requirements-card-content {
+    color: rgb(209 213 219);
+    line-height: 1.75;
+    font-size: 1.125rem;
+}
+
+.requirements-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.requirements-card-image:hover {
+    transform: scale(1.05);
 }

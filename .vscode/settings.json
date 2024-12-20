@@ -14,5 +14,6 @@
         "Scrollbars",
         "Segoe",
         "timeframe"
-    ]
+    ],
+    "DockerRun.DisableDockerrc": true
 }

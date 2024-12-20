@@ -1,78 +1,264 @@
-@import '../tailwind.css';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .data-container {
-    @apply bg-[var(--glass-morphism)] p-6 rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 relative;
+    background: var(--glass-morphism);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur-md: blur(10px);
+    transition: all 0.3s;
+    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 800px;
     margin: 0 auto;
     overflow-x: auto; /* Enable horizontal scrolling if needed */
+    animation: fadeIn 1s ease-in-out;
 }
 
 table {
-    @apply w-full border-collapse;
+    width: 100%;
+    border-collapse: collapse;
+    animation: slideIn 0.5s ease-in-out;
 }
 
 th, td {
-    @apply border border-gray-400 px-4 py-2 text-left;
+    border: 1px solid rgb(156 163 175);
+    padding: 1rem;
+    text-align: left;
+    transition: background-color 0.3s ease;
 }
 
 th {
-    @apply bg-gray-800 text-white font-bold;
+    background-color: rgb(31 41 55);
+    color: white;
+    font-weight: 700;
+}
+
+td:hover {
+    background-color: var(--accent);
 }
 
 .data-item {
-    @apply mb-4;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .data-title {
-    @apply font-bold text-lg mb-2;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
 }
 
 .data-description {
-    @apply text-gray-300;
+    color: rgb(209 213 219);
+    line-height: 1.75;
+    font-size: 1.125rem;
 }
+
 .data-image {
-    @apply w-full h-auto rounded-md mb-2;
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
 }
+
+.data-image:hover {
+    transform: scale(1.05);
+}
+
 .data-section {
-    @apply mb-8;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in-out;
 }
+
 .data-link {
-    @apply text-blue-500 hover:underline;
+    color: rgb(59 130 246);
+    text-decoration: underline;
+    transition: color 0.3s ease;
 }
+
+.data-link:hover {
+    color: var(--secondary);
+}
+
 .data-table {
-    @apply w-full border-collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .data-table th, .data-table td {
-    @apply border border-gray-400 px-4 py-2;
+    border: 1px solid rgb(156 163 175);
+    padding: 1rem;
 }
 
 .data-table th {
-    @apply bg-gray-800 text-white font-bold;
+    background-color: rgb(31 41 55);
+    color: white;
+    font-weight: 700;
 }
 
 .data-table tr:nth-child(even) {
-    @apply bg-gray-900;
+    background-color: rgb(17 24 39);
 }
+
 .data-table-responsive {
-    @apply overflow-x-auto;
+    overflow-x: auto;
 }
 
 .data-table-responsive table {
-    @apply w-full;
+    width: 100%;
 }
+
 .data-table-responsive th, .data-table-responsive td {
-    @apply border border-gray-400 px-4 py-2;
+    border: 1px solid rgb(156 163 175);
+    padding: 1rem;
 }
 
 .data-table-responsive th {
-    @apply bg-gray-800 text-white font-bold;
+    background-color: rgb(31 41 55);
+    color: white;
+    font-weight: 700;
 }
 
 .data-table-responsive tr:nth-child(even) {
-    @apply bg-gray-900;
+    background-color: rgb(17 24 39);
 }
+
 .data-table-responsive {
     overflow-x: auto;
+}
+
+/* Add dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1a1a1a;
+        --text-color-light: #e0e0e0;
+        --text-color-dark: #f0f0f0;
+    }
+    body {
+        background-color: var(--background);
+        color: var(--text-color-light);
+    }
+}
+
+/* Add animation utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Add new advanced utilities */
+.data-gradient-bg {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-color-light);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.data-gradient-bg:hover {
+    transform: scale(1.05);
+}
+
+.data-animated-button {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.375rem;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.data-animated-button:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.data-card {
+    background: var(--glass-morphism);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-blur-md: blur(10px);
+    transition: all 0.3s;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.data-card-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.data-card-content {
+    color: rgb(209 213 219);
+    line-height: 1.75;
+    font-size: 1.125rem;
+}
+
+.data-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.data-card-image:hover {
+    transform: scale(1.05);
 }

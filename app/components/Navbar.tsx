@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@remix-run/react";
 import { useState, useCallback } from 'react';
-import '../styles/tailwind.css'; // Ensure correct path
+import '../styles/navbar.css'; // Ensure correct path
 
 function MobileNavIcon({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
     return (
@@ -23,7 +23,7 @@ function MobileNavIcon({ open, setOpen }: { open: boolean; setOpen: (open: boole
     );
 }
 
-export default function Navbar() {
+export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: boolean; onLogin: () => void; onLogout: () => void }) {
     const [open, setOpen] = useState(false);
     const location = useLocation();
 
@@ -41,7 +41,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="bg-white dark:bg-gray-800 shadow-md fixed w-full z-50">
+        <nav className="navbar fixed w-full z-50">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-16">
                     <Link to="/" className="flex items-center">
@@ -61,6 +61,32 @@ export default function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+                        {isLoggedIn ? (
+                            <>
+                                <Link
+                                    to="/account"
+                                    onClick={handleLinkClick}
+                                    className={`text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white ${
+                                        location.pathname === '/account' ? 'font-bold underline' : ''
+                                    }`}
+                                >
+                                    Account
+                                </Link>
+                                <button
+                                    onClick={onLogout}
+                                    className="button"
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <button
+                                onClick={onLogin}
+                                className="button"
+                            >
+                                Login
+                            </button>
+                        )}
                     </div>
                     <div className={`lg:hidden ${open ? 'block' : 'hidden'} absolute top-16 left-0 w-full bg-white dark:bg-gray-800 shadow-lg`}>
                         <div className="px-4 pt-2 pb-3 space-y-1">
@@ -76,6 +102,32 @@ export default function Navbar() {
                                     {link.label}
                                 </Link>
                             ))}
+                            {isLoggedIn ? (
+                                <>
+                                    <Link
+                                        to="/account"
+                                        onClick={handleLinkClick}
+                                        className={`block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white ${
+                                            location.pathname === '/account' ? 'font-bold underline' : ''
+                                        }`}
+                                    >
+                                        Account
+                                    </Link>
+                                    <button
+                                        onClick={onLogout}
+                                        className="button w-full"
+                                    >
+                                        Logout
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    onClick={onLogin}
+                                    className="button w-full"
+                                >
+                                    Login
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

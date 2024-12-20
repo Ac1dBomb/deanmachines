@@ -36,6 +36,24 @@ export default function Index() {
                         <li>Integration with VectorDB for efficient data management</li>
                     </ul>
                 </p>
+                <p className="index-text mt-4">
+                    <strong>Technologies Used:</strong>
+                    <ul className="index-list">
+                        <li>NVIDIA Orin Nano for high-performance computing</li>
+                        <li>TFmini-S for precise distance measurement</li>
+                        <li>Optical flow sensor for accurate motion tracking</li>
+                        <li>IR beacon and IR obstacle avoidance for enhanced navigation</li>
+                        <li>Ultrasonic sensors for obstacle detection</li>
+                        <li>AI camera for real-time image processing</li>
+                        <li>PyTorch for advanced machine learning model training</li>
+                    </ul>
+                </p>
+                <p className="index-text mt-4">
+                    <strong>Community Engagement:</strong> We are committed to fostering a vibrant community of FPV enthusiasts. Join our forums, participate in discussions, and contribute to our open-source projects. Together, we can push the boundaries of FPV technology.
+                </p>
+                <p className="index-text mt-4">
+                    <strong>Get Involved:</strong> Whether you are a seasoned FPV pilot or a newcomer, there are many ways to get involved with Dean Machines. Explore our tutorials, contribute to our codebase, or share your flight data with the community.
+                </p>
                 <div className="index-footer">
                     <p className="index-footer-text">
                         Created by Sam. This project is open source and available under the MIT License. Contributions and feedback are welcome!

@@ -31,11 +31,10 @@ export default function App() {
                 <Meta />
                 <Links />
                 <title>Dean Machines</title>
-                <meta name="description" content="FPV Prototype Web App" />
             </head>
             <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Layout> {/* Use Layout component */}
+                    <Layout>
                         <Outlet />
                     </Layout>
                 </ErrorBoundary>
