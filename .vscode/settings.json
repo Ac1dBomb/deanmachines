@@ -16,5 +16,12 @@
         "timeframe",
         "tooltiptext"
     ],
-    "DockerRun.DisableDockerrc": true
+    "DockerRun.DisableDockerrc": true,
+    "cloudcode.compute.sshInternalIp": true,
+    "cloudcode.enableSkaffoldSkipUnreachableDirs": true,
+    "cloudcode.enableMultiSkaffoldConfigsKey": true,
+    "cloudcode.project": "credible-rex-443609-b1",
+    "cloudcode.updateChannel": "Insiders",
+    "cloudcode.verboseLogging": true,
+    "cloudcode.enableConfigLessExperience": true
 }
