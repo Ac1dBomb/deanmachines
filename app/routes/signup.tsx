@@ -1,49 +1,59 @@
 import { useState } from 'react';
-import { Link, useNavigation } from '@remix-run/react';
-import '../styles/login.css'; // Ensure correct path
+import { Link } from '@remix-run/react';
+import '../styles/signup.css'; // Ensure correct path
 
-export default function Login() {
+export default function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const navigation = useNavigation();
-    const isSubmitting = navigation.state === 'submitting';
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         setError('');
 
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
+            setLoading(false);
+            return;
+        }
+
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password }),
             });
-            
+
             if (!response.ok) {
                 const data = await response.json();
-                setError(data.message || 'Login failed');
+                setError(data.message || 'Signup failed');
             } else {
-                console.log('Login successful!');
+                console.log('Signup successful!');
                 window.location.href = '/account'; // Redirect to account page
             }
         } catch (err: unknown) {
             setError('An unexpected error occurred');
-            console.error('Login error:', err)
+            console.error('Signup error:', err);
+        } finally {
+            setLoading(false);
         }
     };
-    const handleOAuthLogin = (provider: string) => {
+
+    const handleOAuthSignup = (provider: string) => {
         window.location.href = `/auth/${provider}`;
     };
 
     return (
-        <div className="login-container">
-            <div className="login-form">
-                <h1 className="login-title">Login</h1>
+        <div className="signup-container">
+            <div className="signup-form">
+                <h1 className="signup-title">Sign Up</h1>
                 {error && <p className="error">{error}</p>}
-                <form method="post" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
@@ -60,18 +70,26 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? 'Logging in...' : 'Login'}
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Signing up...' : 'Sign Up'}
                     </button>
                 </form>
-                <button onClick={() => handleOAuthLogin('google')} className="oauth-button">
-                    Log in with Google
+                <button onClick={() => handleOAuthSignup('google')} className="oauth-button">
+                    Sign up with Google
                 </button>
-                <button onClick={() => handleOAuthLogin('github')} className="oauth-button">
-                    Log in with GitHub
+                <button onClick={() => handleOAuthSignup('github')} className="oauth-button">
+                    Sign up with GitHub
                 </button>
                 <p>
-                    Don&apos;t have an account? <Link to="/signup">Sign up</Link>
+                    Already have an account? <Link to="/login">Log in</Link>
                 </p>
             </div>
         </div>

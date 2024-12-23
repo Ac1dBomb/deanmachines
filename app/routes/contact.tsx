@@ -1,8 +1,51 @@
 import { useState, useRef } from 'react';
-import { Link } from '@remix-run/react';
+import { Link, Form, useActionData } from '@remix-run/react';
+import { ActionFunction } from '@remix-run/node';
 import '../styles/tailwind.css'; // Ensure correct path
 
+type ActionData = {
+    success?: boolean;
+};
+
+export const action: ActionFunction = async ({ request }: { request: Request }) => {
+    // Handle form submission without unused variables
+    if (!request) {
+        throw new Error('Request is null or undefined');
+    }
+
+    try {
+        const formData = await request.formData();
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+
+        if (!name || !email || !message) {
+            throw new Error('One or more fields are missing');
+        }
+
+        // Here's where you would integrate with your backend/email service
+        // Example using fetch to a serverless function or backend endpoint:
+        // const response = await fetch('/api/contact', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({ name, email, message }),
+        // });
+
+        // if (!response.ok) {
+        //     throw new Error('Error sending email');
+        // }
+
+        return { success: true };
+    } catch (error) {
+        console.error(error);
+        return { success: false };
+    }
+};
+
 export default function Contact() {
+    const actionData = useActionData<ActionData>();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -72,11 +115,11 @@ export default function Contact() {
                 {status === 'success' ? (
                     <div className="text-green-600 mb-4" role="alert">Your message has been sent successfully!</div>
                 ) : (
-                    <form onSubmit={handleSubmit}>
+                    <Form method="post" onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label>
                             <input
-                                type="text" id="name"
+                                type="text" id="name" name="name"
                                 ref={nameInputRef}
                                 className="border border-gray-400 dark:border-gray-600 p-2 w-full rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                                 value={name}
@@ -89,7 +132,7 @@ export default function Contact() {
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
                             <input
-                                type="email" id="email"
+                                type="email" id="email" name="email"
                                 className="border border-gray-400 dark:border-gray-600 p-2 w-full rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -101,7 +144,7 @@ export default function Contact() {
                         <div className="mb-4">
                             <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label>
                             <textarea
-                                id="message"
+                                id="message" name="message"
                                 className="border border-gray-400 dark:border-gray-600 p-2 w-full rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                                 rows={4}
                                 value={message}
@@ -125,8 +168,10 @@ export default function Contact() {
                                 {status === 'sending' ? 'Sending...' : 'Submit'}
                             </button>
                         </div>
-                    </form>
+                    </Form>
                 )}
+
+                {actionData?.success && <p>Thank you for your message!</p>}
 
                 <Link to="/" className="mt-8 block text-center px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300">
                     Go Back Home
@@ -135,4 +180,3 @@ export default function Contact() {
         </div>
     );
 }
-

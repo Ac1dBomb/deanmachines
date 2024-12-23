@@ -6,8 +6,8 @@
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: black;
-    color: #fff;
+    background-color: var(--background);
+    color: var(--text-color-light);
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
@@ -36,7 +36,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: black transparent transparent transparent;
+    border-color: var(--background) transparent transparent transparent;
 }
 .tooltip.is-left .tooltiptext {
     left: auto;
@@ -51,6 +51,7 @@
     margin-left: 0;
     margin-right: -5px;
     transform: rotate(180deg);
+    border-color: var(--background) transparent transparent transparent;
 }
 .tooltip.is-top .tooltiptext {
     left: 50%;
@@ -66,6 +67,7 @@
     margin-top: 0;
     margin-bottom: -5px;
     transform: rotate(90deg);
+    border-color: transparent transparent var(--background) transparent;
 }
 
 .tooltip.is-right .tooltiptext {
@@ -77,4 +79,5 @@
 .tooltip.is-right .tooltiptext::before {
     left: -5px;
     transform: rotate(270deg);
+    border-color: transparent transparent transparent var(--background);
 }

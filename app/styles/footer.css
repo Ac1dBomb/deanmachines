@@ -1,24 +1,24 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .footer {
-    background-color: #f8f9fa;
-    padding: 2rem 0;
+    background-color: var(--background);
+    color: var(--text-color-light);
+    padding: 1.5rem;
     text-align: center;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-top: 1px solid var(--accent);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .footer a {
-    color: #343a40;
+    color: var(--primary);
     text-decoration: none;
-    margin: 0 0.5rem;
-    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    color: #007bff;
-    text-decoration: underline;
+    color: var(--secondary);
 }
 
 .footer .social-icons {
@@ -27,35 +27,34 @@
 
 .footer .social-icons a {
     margin: 0 0.5rem;
-    color: #343a40;
-    transition: color 0.3s ease, transform 0.3s ease;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
 }
 
 .footer .social-icons a:hover {
-    color: #007bff;
-    transform: translateY(-2px);
+    color: var(--accent);
 }
 
-/* Dark mode support */
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
     .footer {
-        background-color: #212529;
-        box-shadow: 0 -10px 15px -3px rgba(0, 0, 0, 0.5), 0 -4px 6px -2px rgba(0, 0, 0, 0.3);
+        background-color: var(--background);
+        color: var(--text-color-light);
     }
 
     .footer a {
-        color: #fff;
+        color: var(--primary);
     }
 
     .footer a:hover {
-        color: #1d4ed8;
+        color: var(--secondary);
     }
 
     .footer .social-icons a {
-        color: #fff;
+        color: var(--text-color-light);
     }
 
     .footer .social-icons a:hover {
-        color: #1d4ed8;
+        color: var(--accent);
     }
 }

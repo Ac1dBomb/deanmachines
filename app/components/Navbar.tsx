@@ -1,8 +1,8 @@
 import { Link, useLocation } from "@remix-run/react";
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import '../styles/navbar.css'; // Ensure correct path
 
-function MobileNavIcon({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
+function MobileNavIcon({ open, setOpen }: { readonly open: boolean; readonly setOpen: (open: boolean) => void }) {
     return (
         <button
             onClick={() => setOpen(!open)}
@@ -23,9 +23,18 @@ function MobileNavIcon({ open, setOpen }: { open: boolean; setOpen: (open: boole
     );
 }
 
-export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: boolean; onLogin: () => void; onLogout: () => void }) {
+export default function Navbar({ isLoggedIn, onLogout }: { readonly isLoggedIn: boolean; readonly onLogout: () => void }) {
     const [open, setOpen] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
     const location = useLocation();
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [darkMode]);
 
     const handleLinkClick = useCallback(() => {
         setOpen(false);
@@ -37,11 +46,13 @@ export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: 
         { label: "Requirements", to: "/requirements" },
         { label: "Data", to: "/data" },
         { label: "About", to: "/about" },
-        { label: "Contact", to: "/contact" }
+        { label: "Contact", to: "/contact" },
+        { label: "Login", to: "/login" }, // Correct login link
+        { label: "Signup", to: "/signup" } // Correct signup link
     ];
 
     return (
-        <nav className="navbar fixed w-full z-50">
+        <nav className={`navbar fixed w-full z-50 ${darkMode ? 'dark' : ''}`}>
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-16">
                     <Link to="/" className="flex items-center">
@@ -61,6 +72,12 @@ export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: 
                                 {link.label}
                             </Link>
                         ))}
+                        <button
+                            onClick={() => setDarkMode(!darkMode)}
+                            className="dark-mode-toggle"
+                        >
+                            {darkMode ? 'Light Mode' : 'Dark Mode'}
+                        </button>
                         {isLoggedIn ? (
                             <>
                                 <Link
@@ -80,12 +97,22 @@ export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: 
                                 </button>
                             </>
                         ) : (
-                            <button
-                                onClick={onLogin}
-                                className="button"
-                            >
-                                Login
-                            </button>
+                            <>
+                                <Link
+                                    to="/login"
+                                    onClick={handleLinkClick}
+                                    className="button"
+                                >
+                                    Login
+                                </Link>
+                                <Link
+                                    to="/signup"
+                                    onClick={handleLinkClick}
+                                    className="button"
+                                >
+                                    Signup
+                                </Link>
+                            </>
                         )}
                     </div>
                     <div className={`lg:hidden ${open ? 'block' : 'hidden'} absolute top-16 left-0 w-full bg-white dark:bg-gray-800 shadow-lg`}>
@@ -102,6 +129,12 @@ export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: 
                                     {link.label}
                                 </Link>
                             ))}
+                            <button
+                                onClick={() => setDarkMode(!darkMode)}
+                                className="dark-mode-toggle w-full"
+                            >
+                                {darkMode ? 'Light Mode' : 'Dark Mode'}
+                            </button>
                             {isLoggedIn ? (
                                 <>
                                     <Link
@@ -121,12 +154,22 @@ export default function Navbar({ isLoggedIn, onLogin, onLogout }: { isLoggedIn: 
                                     </button>
                                 </>
                             ) : (
-                                <button
-                                    onClick={onLogin}
-                                    className="button w-full"
-                                >
-                                    Login
-                                </button>
+                                <>
+                                    <Link
+                                        to="/login"
+                                        onClick={handleLinkClick}
+                                        className="button w-full"
+                                    >
+                                        Login
+                                    </Link>
+                                    <Link
+                                        to="/signup"
+                                        onClick={handleLinkClick}
+                                        className="button w-full"
+                                    >
+                                        Signup
+                                    </Link>
+                                </>
                             )}
                         </div>
                     </div>

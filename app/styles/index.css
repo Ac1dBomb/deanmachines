@@ -5,11 +5,16 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #282c34;
-    color: #f0f0f0;
+    background-color: var(--background);
+    color: var(--text-color-light);
     line-height: 1.6;
     margin: 0;
     padding: 0;
+}
+
+body.dark {
+    background-color: var(--dark-background);
+    color: var(--dark-text-color-light);
 }
 
 .container {
@@ -20,29 +25,46 @@ body {
 
 h1, h2, h3 {
     font-weight: bold;
-    color: #64ffda;
+    color: var(--primary);
 }
 
 a {
-    color: #64ffda;
+    color: var(--primary);
     text-decoration: none;
 }
 
+a.dark {
+    color: var(--dark-primary);
+}
+
 a:hover {
-    color: #f57c00;
+    color: var(--secondary);
+}
+
+a.dark:hover {
+    color: var(--dark-secondary);
 }
 
 .button {
-    background-color: #64ffda;
-    color: #282c34;
+    background-color: var(--primary);
+    color: var(--background);
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
+.button.dark {
+    background-color: var(--dark-primary);
+    color: var(--dark-background);
+}
+
 .button:hover {
-    background-color: #f57c00;
+    background-color: var(--secondary);
+}
+
+.button.dark:hover {
+    background-color: var(--dark-secondary);
 }
 
 .section {
@@ -59,7 +81,7 @@ a:hover {
 }
 
 .glassmorphism {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-morphism);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);

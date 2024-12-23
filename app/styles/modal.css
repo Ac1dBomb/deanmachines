@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .backdrop {
     position: fixed;
     top: 0;
@@ -10,20 +14,26 @@
     align-items: center;
     z-index: 999;
 }
+
 .modal {
-    background-color: #fff;
+    background: var(--glass-morphism);
     padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    max-width: 500px;
-    width: 100%;
-    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
     margin-bottom: 1rem;
 }
 
@@ -38,20 +48,35 @@
 }
 
 .modal-body {
+    color: var(--text-color-light);
+    line-height: 1.75;
+    font-size: 1.125rem;
     margin-bottom: 1rem;
 }
 
 .modal-footer {
     display: flex;
     justify-content: flex-end;
+    margin-top: 1.5rem;
 }
 
 .modal-button {
-    padding: 0.5rem 1rem;
+    background-color: var(--accent);
+    color: var(--text-color-light);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    outline: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-left: 0.5rem;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: var(--primary);
+    color: var(--text-color-dark);
+    transform: translateY(-2px);
 }
 
 .modal-button--primary {
@@ -62,4 +87,27 @@
 .modal-button--secondary {
     background-color: #6c757d;
     color: #fff;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .modal {
+        background: var(--glass-morphism);
+    }
+
+    .modal-header {
+        color: var(--primary);
+    }
+
+    .modal-body {
+        color: var(--text-color-light);
+    }
+
+    .modal-button {
+        background-color: var(--primary);
+    }
+
+    .modal-button:hover {
+        background-color: var(--secondary);
+    }
 }

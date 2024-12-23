@@ -23,5 +23,12 @@
     --gradient-start: #282c34;
     --gradient-end: #333a43;
     --gradient-angle: 135deg;
+    --dark-primary: #ffffff;
+    --dark-secondary: #d1d1d1;
+    --dark-background: #000000;
+    --dark-accent: #808080;
+    --dark-shadow: rgba(255, 255, 255, 0.1);
+    --dark-text-color-light: #ffffff;
+    --dark-text-color-dark: #000000;
+    --dark-glass-morphism: rgba(255, 255, 255, 0.05);
 }
-

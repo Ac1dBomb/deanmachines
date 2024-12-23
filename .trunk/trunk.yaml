@@ -3,3 +3,6 @@
 version: 0.1
 cli:
   version: 1.22.8
+lint:
+  enabled:
+    - eslint@9.17.0

@@ -1,6 +1,13 @@
-import { Link } from "@remix-run/react";
+import { Link, MetaFunction } from "@remix-run/react";
 import '../styles/index.css'; // Ensure correct path
 import '../styles/new_styles.css'; // Ensure correct path
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Dean Machines" },
+        { name: "description", content: "FPV Prototype Web App" },
+    ];
+};
 
 export default function Index() {
     return (
@@ -73,11 +80,10 @@ export default function Index() {
                 <Link to="/contact" className="button">
                     Contact Us
                 </Link>
-                <Link to="/form" className="button">
+                <Link to="/signup" className="button">
                     Sign Up
                 </Link>
             </div>
         </div>
     );
 }
-

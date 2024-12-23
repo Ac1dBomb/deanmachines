@@ -1,28 +1,12 @@
 import { LinksFunction } from '@remix-run/node';
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
-import { ErrorBoundary } from 'react-error-boundary';
-import tailwindStyles from './styles/tailwind.css';
-import Layout from './routes/layout';
+import type { ErrorResponse } from '@remix-run/router';
+import { Links, LiveReload, Meta, Scripts, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
+import styles from './styles/global.css';
+import Root from './components/root';
 
 export const links: LinksFunction = () => {
-    return [{ rel: 'stylesheet', href: tailwindStyles }];
+    return [{ rel: 'stylesheet', href: styles }];
 };
-
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
-    console.error('Error in component tree', error);
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-            <h1 className="text-3xl font-bold mb-4">Oops! An error occurred.</h1>
-            <p className="text-lg">{error.message}</p>
-            <button
-                onClick={resetErrorBoundary}
-                className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-                Try again
-            </button>
-        </div>
-    );
-}
 
 export default function App() {
     return (
@@ -31,13 +15,11 @@ export default function App() {
                 <Meta />
                 <Links />
                 <title>Dean Machines</title>
+                <meta name="description" content="FPV Prototype Web App" />
+                <link rel="stylesheet" href="/styles/tailwind.css" /> {/* Ensure correct path */}
             </head>
             <body className="bg-black text-white">
-                <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Layout>
-                        <Outlet />
-                    </Layout>
-                </ErrorBoundary>
+                <Root />
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
@@ -46,41 +28,23 @@ export default function App() {
     );
 }
 
-export function CatchBoundary() {
-    const caught = useRouteError();
+export function ErrorBoundary() {
+    const caught = useRouteError() as ErrorResponse | Error;
+
+    let errorMessage = null;
+
     if (isRouteErrorResponse(caught)) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
-                {caught.status === 500 ? (
-                    <p className="text-lg">Internal Server Error</p>
-                ) : caught.status === 404 ? (
-                    <p className="text-lg">Page Not Found</p>
-                ) : caught.status === 401 ? (
-                    <p className="text-lg">Unauthorized</p>
-                ) : (
-                    <p className="text-lg">
-                        {caught.status} {caught.statusText} {caught.data?.message}
-                    </p>
-                )}
-            </div>
-        );
+        errorMessage = <p className="text-lg">{caught.status} {caught.statusText} {caught.data?.message}</p>;
     } else if (caught instanceof Error) {
-        console.error("Client-side error", caught);
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
-                <p className="text-lg">A client-side error occurred.</p>
-                <p className="text-lg">Error Message: {caught.message}</p>
-            </div>
-        );
+        errorMessage = <p className="text-lg">A client-side error occurred. Error Message: {caught.message}</p>;
     } else {
-        console.error("Unexpected error", caught);
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-                <h1 className="text-3xl font-bold mb-4">Oops!</h1>
-                <p className="text-lg">An unexpected error occurred.</p>
-            </div>
-        );
+        errorMessage = <p className="text-lg">An unexpected error occurred.</p>;
     }
+
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+            <h1 className="text-3xl font-bold mb-4">Oops!</h1>
+            {errorMessage}
+        </div>
+    );
 }

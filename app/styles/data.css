@@ -7,7 +7,8 @@
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     transition: all 0.3s;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -24,15 +25,15 @@ table {
 }
 
 th, td {
-    border: 1px solid rgb(156 163 175);
+    border: 1px solid var(--accent);
     padding: 1rem;
     text-align: left;
     transition: background-color 0.3s ease;
 }
 
 th {
-    background-color: rgb(31 41 55);
-    color: white;
+    background-color: var(--background);
+    color: var(--text-color-light);
     font-weight: 700;
 }
 
@@ -58,7 +59,7 @@ td:hover {
 }
 
 .data-description {
-    color: rgb(209 213 219);
+    color: var(--text-color-light);
     line-height: 1.75;
     font-size: 1.125rem;
 }
@@ -81,7 +82,7 @@ td:hover {
 }
 
 .data-link {
-    color: rgb(59 130 246);
+    color: var(--primary);
     text-decoration: underline;
     transition: color 0.3s ease;
 }
@@ -96,18 +97,18 @@ td:hover {
 }
 
 .data-table th, .data-table td {
-    border: 1px solid rgb(156 163 175);
+    border: 1px solid var(--accent);
     padding: 1rem;
 }
 
 .data-table th {
-    background-color: rgb(31 41 55);
-    color: white;
+    background-color: var(--background);
+    color: var(--text-color-light);
     font-weight: 700;
 }
 
 .data-table tr:nth-child(even) {
-    background-color: rgb(17 24 39);
+    background-color: var(--background);
 }
 
 .data-table-responsive {
@@ -119,18 +120,18 @@ td:hover {
 }
 
 .data-table-responsive th, .data-table-responsive td {
-    border: 1px solid rgb(156 163 175);
+    border: 1px solid var(--accent);
     padding: 1rem;
 }
 
 .data-table-responsive th {
-    background-color: rgb(31 41 55);
-    color: white;
+    background-color: var(--background);
+    color: var(--text-color-light);
     font-weight: 700;
 }
 
 .data-table-responsive tr:nth-child(even) {
-    background-color: rgb(17 24 39);
+    background-color: var(--background);
 }
 
 /* Add dark mode support */
@@ -139,6 +140,9 @@ td:hover {
         --background: #1a1a1a;
         --text-color-light: #e0e0e0;
         --text-color-dark: #f0f0f0;
+        --primary: #ffffff;
+        --secondary: #d1d1d1;
+        --accent: #808080;
     }
     body {
         background-color: var(--background);
@@ -221,7 +225,7 @@ td:hover {
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    backdrop-blur-md: blur(10px);
+    backdrop-filter: blur(5px);
     transition: all 0.3s;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -242,7 +246,7 @@ td:hover {
 }
 
 .data-card-content {
-    color: rgb(209 213 219);
+    color: var(--text-color-light);
     line-height: 1.75;
     font-size: 1.125rem;
 }
