@@ -2,8 +2,9 @@ import '../styles/tailwind.css'; // Ensure correct path
 import { Outlet, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useState, useEffect } from 'react';
+import Layout from '../routes/layout';
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function ErrorFallback({ error, resetErrorBoundary }: Readonly<{ error: Error; resetErrorBoundary: () => void }>) {
     console.error('Error in component tree', error);
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
@@ -31,16 +32,18 @@ export default function Root() {
     }, [darkMode]);
 
     return (
-        <div>
+        <div className="min-h-screen bg-white dark:bg-gray-900">
+            <Layout>
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <Outlet />
+                </ErrorBoundary>
+            </Layout>
             <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="fixed top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="fixed bottom-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 z-50"
             >
-                Toggle Dark Mode
+                {darkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-                <Outlet />
-            </ErrorBoundary>
             <ScrollRestoration />
         </div>
     );

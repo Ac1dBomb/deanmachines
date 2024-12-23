@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@remix-run/react";
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import '../styles/navbar.css'; // Ensure correct path
 
 function MobileNavIcon({ open, setOpen }: { readonly open: boolean; readonly setOpen: (open: boolean) => void }) {
@@ -23,18 +23,9 @@ function MobileNavIcon({ open, setOpen }: { readonly open: boolean; readonly set
     );
 }
 
-export default function Navbar({ isLoggedIn, onLogout }: { readonly isLoggedIn: boolean; readonly onLogout: () => void }) {
+export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: { readonly isLoggedIn: boolean; readonly onLogout: () => void; readonly darkMode: boolean; readonly setDarkMode: (darkMode: boolean) => void }) {
     const [open, setOpen] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);
     const location = useLocation();
-
-    useEffect(() => {
-        if (darkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [darkMode]);
 
     const handleLinkClick = useCallback(() => {
         setOpen(false);

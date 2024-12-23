@@ -1,11 +1,11 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss';
+
 export default {
   content: [
-    "./app/routes/**/*.{ts,tsx}",
-    "./app/components/**/*.{ts,tsx}",
-    "./app/styles/**/*.{css}",
-    "./app/entry.client.tsx",
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./app/styles/**/*.css"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -23,8 +23,13 @@ export default {
       screens: {
         'sm': '640px',
       },
+      colors: {
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        accent: 'var(--accent)',
+        background: 'var(--background)',
+      },
     },
   },
   plugins: [],
-  prefix: '', // No prefix added
-};
+} satisfies Config;

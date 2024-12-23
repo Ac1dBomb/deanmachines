@@ -58,3 +58,45 @@ The true potential of autonomous drone technology lies in collective intelligenc
 npm run dev  # Run development server
 npm run build # Build for production
 npm start    # Run production server
+```
+
+# DeanMachines
+
+## Tech Stack
+- React 18 with TypeScript
+- Remix for routing and server-side rendering
+- Tailwind CSS with Twin.macro for styling
+- ESLint + Prettier for code quality
+- Vitest for testing
+
+## Setup Instructions
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Copy `.env.example` to `.env`
+4. Start development server: `npm run dev`
+
+## Development Guidelines
+- Follow TypeScript strict mode guidelines
+- Use functional components with hooks
+- Implement error boundaries for robust error handling
+- Follow the project's CSS architecture
+- Write tests for new features
+
+## Project Structure
+```
+deanmachines/
+├── app/
+│   ├── components/    # Reusable components
+│   ├── routes/        # Route components
+│   └── styles/        # Global styles
+├── types/            # TypeScript declarations
+├── public/           # Static assets
+└── tests/            # Test files
+```
+
+## Commands
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run test`: Run tests
+- `npm run lint`: Lint code
+- `npm run format`: Format code

@@ -13,25 +13,24 @@ body {
 }
 
 :root {
-    /* Light theme variables */
-    --primary: #ffffff;
-    --secondary: #d1d1d1;
-    --background: #000000;
-    --accent: #808080;
-    --shadow: rgba(255, 255, 255, 0.1);
-    --text-color-light: #ffffff;
-    --text-color-dark: #000000;
-    --glass-morphism: rgba(255, 255, 255, 0.05);
+    --primary: #64ffda;
+    --secondary: #f57c00;
+    --background: #282c34;
+    --accent: #a78bfa;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --text-color-light: #f0f0f0;
+    --text-color-dark: #333;
+    --glass-morphism: rgba(255, 255, 255, 0.15);
     --border-radius: 8px;
     --transition-duration: 0.3s;
     --nav-height: 60px;
     --mobile-nav-height: 50px;
-    --error-color: #ff4444;
-    --success-color: #00c853;
-    --warning-color: #ffa000;
-    --info-color: #2196f3;
-
-    /* Dark theme variables */
+    --font-family: 'Roboto', sans-serif;
+    --code-font-family: 'Fira Code', monospace;
+    --animation-speed: 1.5s;
+    --gradient-start: #282c34;
+    --gradient-end: #333a43;
+    --gradient-angle: 135deg;
     --dark-primary: #ffffff;
     --dark-secondary: #d1d1d1;
     --dark-background: #000000;
@@ -44,10 +43,10 @@ body {
 
 /* Global Styles */
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--background);
     color: var(--text-color-light);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
     min-height: 100vh;
 }
 
@@ -226,4 +225,13 @@ p, span, li {
 ::selection {
     background: var(--accent);
     color: var(--text-color-light);
+}
+
+.dark {
+    --background: var(--dark-background);
+    --text-color-light: var(--dark-text-color-light);
+    --text-color-dark: var(--dark-text-color-dark);
+    --accent: var(--dark-accent);
+    --shadow: var(--dark-shadow);
+    --glass-morphism: var(--dark-glass-morphism);
 }
