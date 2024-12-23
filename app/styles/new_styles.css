@@ -35,7 +35,7 @@
 }
 
 .new-content {
-    color: rgb(209 213 219);
+    color: var(--text-color-light);
     line-height: 1.75;
     font-size: 1.125rem;
 }
@@ -58,13 +58,13 @@
 }
 
 .new-link {
-    color: rgb(59 130 246);
+    color: var(--accent);
     text-decoration: underline;
     transition: color 0.3s ease;
 }
 
 .new-link:hover {
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 .new-list {
@@ -100,13 +100,13 @@
 }
 
 .new-table th {
-    background-color: rgb(31 41 55);
-    color: white;
+    background-color: var(--accent);
+    color: var(--text-color-light);
     font-weight: 700;
 }
 
 .new-table tr:nth-child(even) {
-    background-color: rgb(17 24 39);
+    background-color: rgba(128, 128, 128, 0.1);
 }
 
 .new-table-responsive {
@@ -267,7 +267,7 @@
 
 /* Add new advanced utilities */
 .new-gradient-bg {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--accent), var(--background));
     color: var(--text-color-light);
     padding: 1.5rem;
     border-radius: 1rem;
@@ -280,8 +280,8 @@
 }
 
 .new-animated-button {
-    background-color: var(--primary);
-    color: white;
+    background-color: var(--accent);
+    color: var(--text-color-light);
     font-weight: 700;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -295,7 +295,8 @@
 }
 
 .new-animated-button:hover {
-    background-color: var(--secondary);
+    background-color: var(--primary);
+    color: var(--text-color-dark);
     transform: translateY(-2px);
 }
 

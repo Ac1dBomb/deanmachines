@@ -1,8 +1,8 @@
 import { LinksFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
 import { ErrorBoundary } from 'react-error-boundary';
-import tailwindStyles from './styles/tailwind.css'; // Ensure correct path
-import Layout from './routes/layout'; // Import the layout component
+import tailwindStyles from './styles/tailwind.css';
+import Layout from './routes/layout';
 
 export const links: LinksFunction = () => {
     return [{ rel: 'stylesheet', href: tailwindStyles }];
@@ -32,7 +32,7 @@ export default function App() {
                 <Links />
                 <title>Dean Machines</title>
             </head>
-            <body className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+            <body className="bg-black text-white">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                     <Layout>
                         <Outlet />
@@ -84,4 +84,3 @@ export function CatchBoundary() {
         );
     }
 }
-

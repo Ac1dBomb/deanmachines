@@ -7,8 +7,10 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    background: var(--glass-morphism);
     padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .account-form {
@@ -78,6 +80,67 @@
     color: #ef4444;
     margin-top: 0.5rem;
     font-weight: 600;
+}
+
+.account-header {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.account-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius);
+}
+
+.account-label {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.account-value {
+    color: var(--text-color-light);
+}
+
+.account-button {
+    background-color: var(--accent);
+    color: var(--text-color-light);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+}
+
+.account-button:hover {
+    background-color: var(--primary);
+    color: var(--text-color-dark);
+    transform: translateY(-2px);
+}
+
+.account-link {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.account-link:hover {
+    color: var(--primary);
+}
+
+.account-error {
+    color: #ff4444;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.account-success {
+    color: #00C853;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
 }
 
 /* Add dark mode support */
