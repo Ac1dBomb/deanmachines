@@ -38,6 +38,8 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
         { label: "Data", to: "/data" },
         { label: "About", to: "/about" },
         { label: "Contact", to: "/contact" },
+        { label: "Login", to: "/login" },
+        { label: "Sign Up", to: "/signup" }
     ];
 
     return (

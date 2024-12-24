@@ -120,17 +120,6 @@ export default function Requirements() {
                     )}
                 </Disclosure>
             </div>
-            <div className="mt-8 text-center">
-                <p className="text-lg text-gray-700 dark:text-gray-300">
-                    Interested in joining our project? Sign up to stay updated and contribute to the development of our autonomous AI drone.
-                </p>
-                <Link to="/form" className="mt-4 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    Sign Up
-                </Link>
-            </div>
-            <Link to="/" className="mt-8 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">
-                Go Back Home
-            </Link>
         </div>
     );
 }
