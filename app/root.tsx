@@ -1,4 +1,5 @@
 import { Links, LiveReload, Meta, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react';
+import { DarkModeProvider } from './context/DarkModeContext';
 import Layout from './routes/layout';
 
 export default function App() {
@@ -11,7 +12,9 @@ export default function App() {
                 <meta name="description" content="FPV Prototype Web App" />
             </head>
             <body>
-                <Layout />
+                <DarkModeProvider>
+                    <Layout />
+                </DarkModeProvider>
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />

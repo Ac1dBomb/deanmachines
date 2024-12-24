@@ -1,12 +1,13 @@
 import { Link } from "@remix-run/react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import '../styles/page.css';
 
 export default function Requirements() {
     return (
-        <div className="container mx-auto p-4 min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full md:w-2/3 lg:w-1/2 max-w-prose">
-                <h1 className="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center">Requirements</h1>
+        <div className="page-container">
+            <h1 className="page-title">Requirements</h1>
+            <div className="page-content">
                 <Disclosure>
                     {({ open }) => (
                         <>
@@ -133,4 +134,3 @@ export default function Requirements() {
         </div>
     );
 }
-

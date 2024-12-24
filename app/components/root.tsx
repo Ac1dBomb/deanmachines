@@ -1,7 +1,7 @@
 import '../styles/tailwind.css'; // Ensure correct path
 import { Outlet, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useState, useEffect } from 'react';
+import { useDarkMode } from '../context/DarkModeContext';
 import Layout from '../routes/layout';
 
 function ErrorFallback({ error, resetErrorBoundary }: Readonly<{ error: Error; resetErrorBoundary: () => void }>) {
@@ -21,15 +21,7 @@ function ErrorFallback({ error, resetErrorBoundary }: Readonly<{ error: Error; r
 }
 
 export default function Root() {
-    const [darkMode, setDarkMode] = useState(false);
-
-    useEffect(() => {
-        if (darkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    }, [darkMode]);
+    const { darkMode, toggleDarkMode } = useDarkMode();
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -38,12 +30,14 @@ export default function Root() {
                     <Outlet />
                 </ErrorBoundary>
             </Layout>
+            
             <button
-                onClick={() => setDarkMode(!darkMode)}
+                onClick={toggleDarkMode}
                 className="fixed bottom-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 z-50"
             >
                 {darkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
+            
             <ScrollRestoration />
         </div>
     );

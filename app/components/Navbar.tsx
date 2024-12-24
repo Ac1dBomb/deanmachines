@@ -38,8 +38,6 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
         { label: "Data", to: "/data" },
         { label: "About", to: "/about" },
         { label: "Contact", to: "/contact" },
-        { label: "Login", to: "/login" }, // Correct login link
-        { label: "Signup", to: "/signup" } // Correct signup link
     ];
 
     return (
@@ -69,7 +67,7 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
                         >
                             {darkMode ? 'Light Mode' : 'Dark Mode'}
                         </button>
-                        {isLoggedIn ? (
+                        {isLoggedIn && (
                             <>
                                 <Link
                                     to="/account"
@@ -86,23 +84,6 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
                                 >
                                     Logout
                                 </button>
-                            </>
-                        ) : (
-                            <>
-                                <Link
-                                    to="/login"
-                                    onClick={handleLinkClick}
-                                    className="button"
-                                >
-                                    Login
-                                </Link>
-                                <Link
-                                    to="/signup"
-                                    onClick={handleLinkClick}
-                                    className="button"
-                                >
-                                    Signup
-                                </Link>
                             </>
                         )}
                     </div>
@@ -126,7 +107,7 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
                             >
                                 {darkMode ? 'Light Mode' : 'Dark Mode'}
                             </button>
-                            {isLoggedIn ? (
+                            {isLoggedIn && (
                                 <>
                                     <Link
                                         to="/account"
@@ -143,23 +124,6 @@ export default function Navbar({ isLoggedIn, onLogout, darkMode, setDarkMode }: 
                                     >
                                         Logout
                                     </button>
-                                </>
-                            ) : (
-                                <>
-                                    <Link
-                                        to="/login"
-                                        onClick={handleLinkClick}
-                                        className="button w-full"
-                                    >
-                                        Login
-                                    </Link>
-                                    <Link
-                                        to="/signup"
-                                        onClick={handleLinkClick}
-                                        className="button w-full"
-                                    >
-                                        Signup
-                                    </Link>
                                 </>
                             )}
                         </div>
