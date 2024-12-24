@@ -1,7 +1,8 @@
-import { Links, LiveReload, Meta, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react';
+import { Links, LiveReload, Meta, Scripts, ScrollRestoration } from '@remix-run/react';
 import { DarkModeProvider } from './context/DarkModeContext';
 import Layout from './routes/layout';
-import './styles/tailwind.css';
+import './styles/index.css';
+import './styles/page.css';  // Additional global styles
 
 export default function App() {
     return (

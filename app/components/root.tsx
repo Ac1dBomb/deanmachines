@@ -1,4 +1,4 @@
-import '../styles/tailwind.css'; // Ensure correct path
+import '../styles/index.css';  // For global styles
 import { Outlet, ScrollRestoration, useRouteError, isRouteErrorResponse } from '@remix-run/react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDarkMode } from '../context/DarkModeContext';

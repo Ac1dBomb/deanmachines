@@ -24,9 +24,13 @@
   "cloudcode.enableSkaffoldSkipUnreachableDirs": true,
   "cloudcode.enableMultiSkaffoldConfigsKey": true,
   "cloudcode.project": "credible-rex-443609-b1",
-  "cloudcode.updateChannel": "Insiders",
+  "cloudcode.updateChannel": "stable",
   "cloudcode.verboseLogging": true,
   "cloudcode.enableConfigLessExperience": true,
+  "cloudcode.storage": {
+    "bucket": "your-bucket-name",
+    "keyFilename": "${env:GOOGLE_APPLICATION_CREDENTIALS}"
+  },
   "diffEditor.codeLens": true,
   "cloudcode.duetAI.codeGenerationPaneViewEnabled": true,
   "cloudcode.duetAI.project": "credible-rex-443609-b1",
@@ -111,5 +115,6 @@
   "github.copilot.chat.followUps": "always",
   "github.copilot.chat.localeOverride": "en",
   "github.copilot.chat.scopeSelection": true,
-  "github.copilot.chat.reviewSelection.instructions": []
+  "github.copilot.chat.reviewSelection.instructions": [],
+  "geminicodeassist.updateChannel": "Insiders"
 }

@@ -2,10 +2,31 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+    /* Dark theme (default) */
+    --background: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --primary: #64ffda;
+    --secondary: #f57c00;
+    --accent: #a78bfa;
+    --glass-morphism: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme="light"] {
+    --background: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --primary: #1a73e8;
+    --secondary: #f57c00;
+    --accent: #6200ee;
+    --glass-morphism: rgba(0, 0, 0, 0.05);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #1a1a1a; /* Match updates page dark background */
-    color: var(--text-color-light);
+    background-color: var(--background);
+    color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -301,4 +322,9 @@ a.dark:hover {
 
 .dark\:text-white {
     color: white;
+}
+
+.main-content {
+    padding-top: 4rem; /* To account for fixed navbar */
+    min-height: calc(100vh - 4rem);
 }
