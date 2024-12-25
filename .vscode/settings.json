@@ -116,5 +116,11 @@
   "github.copilot.chat.localeOverride": "en",
   "github.copilot.chat.scopeSelection": true,
   "github.copilot.chat.reviewSelection.instructions": [],
-  "geminicodeassist.updateChannel": "Insiders"
+  "geminicodeassist.updateChannel": "Insiders",
+  "codeium.aggressiveShutdown": true,
+  "codeium.enableConfig": {
+    "*": true
+  },
+  "codeium.enableSearch": true,
+  "codeium.indexStoragePath": "/home/sam/Desktop/Codium-data"
 }

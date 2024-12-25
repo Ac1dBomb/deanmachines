@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs, json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react"; // Added Link import
 import { useState, useCallback } from "react";
-
+import '../styles/index.css';
 
 /**
  * Represents a single update entry in the changelog
