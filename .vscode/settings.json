@@ -24,11 +24,11 @@
   "cloudcode.enableSkaffoldSkipUnreachableDirs": true,
   "cloudcode.enableMultiSkaffoldConfigsKey": true,
   "cloudcode.project": "credible-rex-443609-b1",
-  "cloudcode.updateChannel": "default",
+  "cloudcode.updateChannel": "stable",
   "cloudcode.verboseLogging": true,
   "cloudcode.enableConfigLessExperience": true,
   "cloudcode.storage": {
-    "bucket": "deanmachines-fpv",
+    "bucket": "your-bucket-name",
     "keyFilename": "${env:GOOGLE_APPLICATION_CREDENTIALS}"
   },
   "diffEditor.codeLens": true,
@@ -116,10 +116,5 @@
   "github.copilot.chat.localeOverride": "en",
   "github.copilot.chat.scopeSelection": true,
   "github.copilot.chat.reviewSelection.instructions": [],
-  "geminicodeassist.updateChannel": "Insiders",
-  "ipynb.experimental.serialization": true,
-  "intel-corporation.oneapi-analysis-configurator.ONEAPI_ROOT": "/home/sam/intel/oneapi",
-  "intel-corporation.oneapi-analysis-configurator.vtune.install-root": "/home/sam/intel/oneapi/vtune/latest",
-  "geminicodeassist.enableTelemetry": true,
-  "cloudcode.kubeconfigs": []
+  "geminicodeassist.updateChannel": "Insiders"
 }

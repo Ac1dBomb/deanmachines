@@ -1,21 +1,29 @@
-import { Outlet } from '@remix-run/react';
-import { useState } from 'react';
-import Navbar from '~/components/Navbar';
-import Footer from '../components/Footer';
+import React from 'react';
+import { Outlet, useNavigate } from '@remix-run/react';
 import { useDarkMode } from '~/context/DarkModeContext';
+import Navbar from '~/components/Navbar';
+import Footer from '~/components/Footer';
 
-export default function Layout() {
-  const { darkMode, toggleDarkMode } = useDarkMode();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLogout = () => setIsLoggedIn(false);
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { darkMode, setDarkMode } = useDarkMode();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Implement logout logic here
+    navigate('/login');
+  };
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <Navbar 
-        isLoggedIn={isLoggedIn} 
+        isLoggedIn={false} 
         onLogout={handleLogout}
         darkMode={darkMode}
-        setDarkMode={toggleDarkMode}
+        setDarkMode={setDarkMode}
       />
       <main className="pt-16">
         <Outlet />
@@ -24,3 +32,5 @@ export default function Layout() {
     </div>
   );
 }
+
+export default Layout;

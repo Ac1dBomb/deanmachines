@@ -1,6 +1,5 @@
-import { Links, LiveReload, Meta, Scripts, ScrollRestoration } from '@remix-run/react';
+import { Links, LiveReload, Meta, Scripts, ScrollRestoration, Outlet } from '@remix-run/react';
 import { DarkModeProvider } from './context/DarkModeContext';
-import Layout from './routes/layout';
 import './styles/index.css';
 import './styles/page.css';  // Additional global styles
 
@@ -15,7 +14,7 @@ export default function App() {
             </head>
             <body>
                 <DarkModeProvider>
-                    <Layout />
+                    <Outlet /> {/* Replace Layout with Outlet */}
                 </DarkModeProvider>
                 <ScrollRestoration />
                 <Scripts />

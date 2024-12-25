@@ -1,22 +1,12 @@
-import { Link, useLoaderData } from "@remix-run/react";
-import { LoaderFunction } from '@remix-run/node';
-import React, { useState } from 'react';
+import { json, type LoaderFunction } from "@remix-run/node";
+import { useLoaderData, useNavigation, Link } from "@remix-run/react";
+import { useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, AreaChart, Area } from 'recharts';
-import '../styles/data.css'; // Ensure correct path
 
-const fetchDataFromAPI = async () => {
-    // Replace with actual API call
-    return [
-        { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-        { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-        { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-        { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-        { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-        { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-        { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-    ];
-};
 
+/**
+ * Represents the structure of chart data points
+ */
 interface ChartData {
     name: string;
     uv: number;
@@ -24,29 +14,97 @@ interface ChartData {
     amt: number;
 }
 
+/**
+ * Fetches data from the API with proper typing
+ */
+const fetchDataFromAPI = async (): Promise<ChartData[]> => {
+    // Replace with actual API call
+    return [
+        { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
+        { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
+        { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
+    ];
+};
+
+/**
+ * Validates uploaded data matches ChartData structure
+ */
+const isValidChartData = (data: unknown): data is ChartData[] => {
+    if (!Array.isArray(data)) {
+        return false;
+    }
+    return data.every(item => 
+        typeof item === 'object' &&
+        item !== null &&
+        'name' in item &&
+        'uv' in item &&
+        'pv' in item &&
+        'amt' in item &&
+        typeof item.name === 'string' &&
+        typeof item.uv === 'number' &&
+        typeof item.pv === 'number' &&
+        typeof item.amt === 'number'
+    );
+};
+
 export const loader: LoaderFunction = async () => {
-    return await fetchDataFromAPI();
+    try {
+        const data = await fetchDataFromAPI();
+        return json({ data, error: null });
+    } catch (error) {
+        return json({ data: [], error: 'Failed to fetch data' });
+    }
 };
 
 export default function DataVisualization() {
-    const data = useLoaderData<typeof loader>() as ChartData[];
-    const [selectedChart, setSelectedChart] = useState('line'); // Default chart type
-    const [sampleData, setSampleData] = useState(data);
+    const { data, error } = useLoaderData<typeof loader>();
+    const navigation = useNavigation();
+    const [selectedChart, setSelectedChart] = useState<'line' | 'bar' | 'area'>('line');
+    const [sampleData, setSampleData] = useState<ChartData[]>(data);
+    const [uploadError, setUploadError] = useState<string | null>(null);
+    const isLoading = navigation.state === 'loading';
 
     const handleChartChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedChart(event.target.value);
+        setSelectedChart(event.target.value as 'line' | 'bar' | 'area');
     };
 
-    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
-        if (file) {
+        setUploadError(null);
+
+        if (!file) {
+            return;
+        }
+
+        try {
             const reader = new FileReader();
+            
             reader.onload = (e) => {
-                const text = e.target?.result as string;
-                const data = JSON.parse(text);
-                setSampleData(data);
+                try {
+                    const content = e.target?.result;
+                    if (typeof content !== 'string') {
+                        throw new Error('Invalid file content');
+                    }
+
+                    const parsedData = JSON.parse(content);
+                    
+                    if (!isValidChartData(parsedData)) {
+                        throw new Error('Invalid data format');
+                    }
+
+                    setSampleData(parsedData);
+                } catch (err) {
+                    setUploadError(err instanceof Error ? err.message : 'Failed to parse file');
+                }
             };
+
+            reader.onerror = () => {
+                setUploadError('Failed to read file');
+            };
+
             reader.readAsText(file);
+        } catch (err) {
+            setUploadError(err instanceof Error ? err.message : 'Failed to process file');
         }
     };
 
@@ -99,43 +157,64 @@ export default function DataVisualization() {
         }
     };
 
+    if (isLoading) {
+        return <div className="flex justify-center items-center h-64">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-red-500 p-4">{error}</div>;
+    }
+
     return (
-        <div className="data-container">
-            <h1 className="data-title">Data Visualization</h1>
-            {/* Chart Type Selection */}
-            <div className="data-controls">
-                <label htmlFor="chartType" className="mr-2 text-gray-700 dark:text-gray-200">Chart Type:</label>
-                <select
-                    id="chartType"
-                    value={selectedChart}
-                    onChange={handleChartChange}
-                    className="data-select"
-                >
-                    <option value="line">Line Chart</option>
-                    <option value="bar">Bar Chart</option>
-                    <option value="area">Area Chart</option>
-                </select>
+        <div className="p-4">
+            <div className="data-container">
+                <h1 className="data-title">Data Visualization</h1>
+                {/* Chart Type Selection */}
+                <div className="data-controls">
+                    <label htmlFor="chartType" className="mr-2 text-gray-700 dark:text-gray-200">Chart Type:</label>
+                    <select
+                        id="chartType"
+                        value={selectedChart}
+                        onChange={handleChartChange}
+                        className="data-select"
+                    >
+                        <option value="line">Line Chart</option>
+                        <option value="bar">Bar Chart</option>
+                        <option value="area">Area Chart</option>
+                    </select>
+                </div>
+                <div className="data-controls">
+                    <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleFileUpload}
+                        className="data-upload"
+                    />
+                </div>
+                <div className="data-chart">
+                    {renderChart()}
+                </div>
+                {/* Go Back Home */}
+                <div className="data-link">
+                    <Link
+                        to="/"
+                        className="button"
+                    >
+                        Go Back Home
+                    </Link>
+                </div>
+                {uploadError && (
+                    <div className="text-red-500 mt-2">{uploadError}</div>
+                )}
             </div>
-            <div className="data-controls">
-                <input
-                    type="file"
-                    accept=".json"
-                    onChange={handleFileUpload}
-                    className="data-upload"
-                />
-            </div>
-            <div className="data-chart">
-                {renderChart()}
-            </div>
-            {/* Go Back Home */}
-            <div className="data-link">
-                <Link
-                    to="/"
-                    className="button"
-                >
-                    Go Back Home
-                </Link>
-            </div>
+        </div>
+    );
+}
+
+export function ErrorBoundary() {
+    return (
+        <div className="text-red-500 p-4">
+            An unexpected error occurred. Please try again later.
         </div>
     );
 }

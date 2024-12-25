@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
 
-interface DarkModeContextType {
+type DarkModeContextType = {
   darkMode: boolean;
   toggleDarkMode: () => void;
-}
+};
 
 const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
 
