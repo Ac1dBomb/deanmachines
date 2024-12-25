@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigation } from '@remix-run/react';
-import '../styles/login.css'; // Ensure correct path
+import '../styles/index.css';
 
 export default function Login() {
     const [email, setEmail] = useState('');
